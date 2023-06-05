@@ -1,0 +1,15 @@
+C:\Study\C#\theater\Theater\bin\Debug\Theater.exe.config
+C:\Study\C#\theater\Theater\bin\Debug\Theater.exe
+C:\Study\C#\theater\Theater\bin\Debug\Theater.pdb
+C:\Study\C#\theater\Theater\obj\Debug\Theater.csproj.AssemblyReference.cache
+C:\Study\C#\theater\Theater\obj\Debug\Theater.csproj.SuggestedBindingRedirects.cache
+C:\Study\C#\theater\Theater\obj\Debug\Theater.Admin.resources
+C:\Study\C#\theater\Theater\obj\Debug\Theater.Booker.resources
+C:\Study\C#\theater\Theater\obj\Debug\Theater.Cashier.resources
+C:\Study\C#\theater\Theater\obj\Debug\Theater.Login.resources
+C:\Study\C#\theater\Theater\obj\Debug\Theater.Properties.Resources.resources
+C:\Study\C#\theater\Theater\obj\Debug\Theater.csproj.GenerateResource.cache
+C:\Study\C#\theater\Theater\obj\Debug\Theater.csproj.CoreCompileInputs.cache
+C:\Study\C#\theater\Theater\obj\Debug\Theater.exe
+C:\Study\C#\theater\Theater\obj\Debug\Theater.pdb
+C:\Study\C#\theater\Theater\obj\Debug\Theater.csproj.ResolveComReference.cache
