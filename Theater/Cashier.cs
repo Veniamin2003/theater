@@ -301,8 +301,6 @@ namespace Theater
             }
         }
 
-        
-
         private void btnAddTicket_Click(object sender, EventArgs e)
         {
             addTicket();
@@ -311,6 +309,13 @@ namespace Theater
         private void btnEventAdd_Click(object sender, EventArgs e)
         {
             addEvent();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login login = new Login();
+            login.Show();
         }
     }
 }

@@ -29,37 +29,40 @@ namespace Theater
             ShowUserData();
         }
 
+        // билеты
         private void btnShow2_Click(object sender, EventArgs e)
         {
-            LoadDataHistory();
+            LoadDataTicketsHistory();
             btnExportHistory.Enabled = true;
         }
-        private void ShowUserData() // метод отвечает за вывод данных пользователя в левом верхнем углу.
+        private void btnExportHistory_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string userID = userData.UserID;
-                if (userID != null)
-                {
-                    labelFName.Text = userData.UserFName;
-                    labelLName.Text = userData.UserLNmae;
-                    labelRole.Text = userData.UserWorkPosition;
-                }
-                else
-                {
-                    labelFName.Text = "";//очищаем поля
-                    labelLName.Text = "";//очищаем поля
-                    labelRole.Text = "";//очищаем поля
-                    MessageBox.Show("Ошибка");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            ExcelExportTickets();
+        }
+       
+        // мероприятия
+        private void btnShowEvents_Click(object sender, EventArgs e)
+        {
+            LoadDataEventsHistory();
+            btnExportEvents.Enabled = true;
+        }
+        private void btnExportEvents_Click(object sender, EventArgs e)
+        {
+            ExcelExportEvents();
+        }
+        
+        // сотрудники
+        private void btnEmployersShow_Click(object sender, EventArgs e)
+        {
+            LoadDataEmployers();
+            btnEmployersExport.Enabled= true;
+        }
+        private void btnEmployersExport_Click(object sender, EventArgs e)
+        {
+            ExcelExportEmployers();
         }
 
-        private void LoadDataHistory() // загрузка данных из бд
+        private void LoadDataTicketsHistory() // загрузка данных из билеты
         {
             try
             {
@@ -104,8 +107,95 @@ namespace Theater
                 MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void LoadDataEventsHistory() // загрузка данных из мероприятия
+        {
+            try
+            {
+                dataBase.GetConnection();
+                dataBase.openConnection();
 
-        private void btnExportHistory_Click(object sender, EventArgs e)
+                string query = "SELECT [Код мероприятия], Мероприятия.Наименование, Описание, Вид.Наименование, Дата, [Время начала], Длительность, Стоимость FROM " +
+                    "Мероприятия inner join Вид on Мероприятия.[Код вида] = Вид.[Код вида]";
+
+                SqlCommand command = new SqlCommand(query, dataBase.GetConnection());
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+
+                while (reader.Read())
+                {
+                    data.Add(new string[8]);
+
+                    data[data.Count - 1][0] = reader[0].ToString();
+                    data[data.Count - 1][1] = reader[1].ToString();
+                    data[data.Count - 1][2] = reader[2].ToString();
+                    data[data.Count - 1][3] = reader[3].ToString();
+                    data[data.Count - 1][4] = reader[4].ToString();
+                    data[data.Count - 1][5] = reader[5].ToString();
+                    data[data.Count - 1][6] = reader[6].ToString();
+                    data[data.Count - 1][7] = reader[7].ToString();
+                }
+
+                reader.Close();
+
+                dataBase.closeConnection();
+
+                foreach (string[] s in data)
+                    dataGridViewEvent.Rows.Add(s);
+            }
+
+            catch (Exception ex)
+            {
+                dataBase.closeConnection();
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void LoadDataEmployers() // загрузка данных из сотрудники
+        {
+            try
+            {
+                dataBase.GetConnection();
+                dataBase.openConnection();
+
+                string query = "SELECT [Код сотрудника], Фамилия, Имя, Отчество, Адрес, Телефон, Должности.Наименование FROM " +
+                    "Сотрудники inner join Должности on Сотрудники.[Код должности] = Должности.[Код должности]";
+
+                SqlCommand command = new SqlCommand(query, dataBase.GetConnection());
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+
+                while (reader.Read())
+                {
+                    data.Add(new string[7]);
+
+                    data[data.Count - 1][0] = reader[0].ToString();
+                    data[data.Count - 1][1] = reader[1].ToString();
+                    data[data.Count - 1][2] = reader[2].ToString();
+                    data[data.Count - 1][3] = reader[3].ToString();
+                    data[data.Count - 1][4] = reader[4].ToString();
+                    data[data.Count - 1][5] = reader[5].ToString();
+                    data[data.Count - 1][6] = reader[6].ToString();
+                }
+
+                reader.Close();
+
+                dataBase.closeConnection();
+
+                foreach (string[] s in data)
+                    dataGridViewEmployers.Rows.Add(s);
+            }
+
+            catch (Exception ex)
+            {
+                dataBase.closeConnection();
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ExcelExportTickets() //экспорт в эксель билеты
         {
             Excel.Application exApp = new Excel.Application();
 
@@ -115,7 +205,7 @@ namespace Theater
             int i, j;
             for (i = 0; i <= dataGridView1.RowCount - 2; i++)
             {
-                for (j = 0; j <= dataGridView1.ColumnCount - 2; j++) // -2 для того, чобы не брать строчку с кнопкой delete 
+                for (j = 0; j <= dataGridView1.ColumnCount - 1; j++) // -2 для того, чобы не брать строчку с кнопкой delete 
                 {
                     wsh.Cells[1, j + 1] = dataGridView1.Columns[j].HeaderText.ToString(); // добавляет к данным название столбцов
                     wsh.Cells[i + 1, j + 1] = dataGridView1[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
@@ -124,6 +214,76 @@ namespace Theater
 
             exApp.Visible = true; // чтобы после завершения работы запустился Excel
         }
+        private void ExcelExportEvents() //экспорт в эксель мероприятия
+        {
+            Excel.Application exApp = new Excel.Application();
 
+            exApp.Workbooks.Add();
+            Excel.Worksheet wsh = (Excel.Worksheet)exApp.ActiveSheet;
+
+            int i, j;
+            for (i = 0; i <= dataGridViewEvent.RowCount - 2; i++)
+            {
+                for (j = 0; j <= dataGridViewEvent.ColumnCount - 1; j++) // -2 для того, чобы не брать строчку с кнопкой delete 
+                {
+                    wsh.Cells[1, j + 1] = dataGridViewEvent.Columns[j].HeaderText.ToString(); // добавляет к данным название столбцов
+                    wsh.Cells[i + 1, j + 1] = dataGridViewEvent[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
+                }
+            }
+
+            exApp.Visible = true; // чтобы после завершения работы запустился Excel
+        }
+        private void ExcelExportEmployers() //экспорт в эксель сотрудники
+        {
+            Excel.Application exApp = new Excel.Application();
+
+            exApp.Workbooks.Add();
+            Excel.Worksheet wsh = (Excel.Worksheet)exApp.ActiveSheet;
+
+            int i, j;
+            for (i = 0; i <= dataGridViewEmployers.RowCount - 2; i++)
+            {
+                for (j = 0; j <= dataGridViewEmployers.ColumnCount - 1; j++) // -2 для того, чобы не брать строчку с кнопкой delete 
+                {
+                    wsh.Cells[1, j + 1] = dataGridViewEmployers.Columns[j].HeaderText.ToString(); // добавляет к данным название столбцов
+                    wsh.Cells[i + 1, j + 1] = dataGridViewEmployers[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
+                }
+            }
+
+            exApp.Visible = true; // чтобы после завершения работы запустился Excel
+        }
+
+        private void ShowUserData() // метод отвечает за вывод данных пользователя в левом верхнем углу.
+        {
+            try
+            {
+                string userID = userData.UserID;
+                if (userID != null)
+                {
+                    labelFName.Text = userData.UserFName;
+                    labelLName.Text = userData.UserLNmae;
+                    labelRole.Text = userData.UserWorkPosition;
+                }
+                else
+                {
+                    labelFName.Text = "";//очищаем поля
+                    labelLName.Text = "";//очищаем поля
+                    labelRole.Text = "";//очищаем поля
+                    MessageBox.Show("Ошибка");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login login = new Login();
+            login.Show();
+        }
     }
 }
+

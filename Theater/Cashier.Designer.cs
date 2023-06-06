@@ -42,32 +42,33 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtPlaceNumber = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtEventName = new System.Windows.Forms.TextBox();
             this.btnEventAdd = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtEventStartTime = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtEventLength = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtEventPrice = new System.Windows.Forms.TextBox();
+            this.cmbEventTypes = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtEventDesc = new System.Windows.Forms.TextBox();
             this.txtEventDate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.cmbEventTypes = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtEventPrice = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtEventLength = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtEventStartTime = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtEventName = new System.Windows.Forms.TextBox();
+            this.btnBack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelFName
@@ -193,6 +194,16 @@
             this.panel1.Size = new System.Drawing.Size(636, 320);
             this.panel1.TabIndex = 15;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(85, 65);
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -248,6 +259,13 @@
             this.panel2.Size = new System.Drawing.Size(636, 339);
             this.panel2.TabIndex = 16;
             // 
+            // txtEventName
+            // 
+            this.txtEventName.Location = new System.Drawing.Point(14, 37);
+            this.txtEventName.Name = "txtEventName";
+            this.txtEventName.Size = new System.Drawing.Size(180, 20);
+            this.txtEventName.TabIndex = 21;
+            // 
             // btnEventAdd
             // 
             this.btnEventAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(106)))), ((int)(((byte)(221)))));
@@ -259,6 +277,71 @@
             this.btnEventAdd.Text = "Добавить";
             this.btnEventAdd.UseVisualStyleBackColor = false;
             this.btnEventAdd.Click += new System.EventHandler(this.btnEventAdd_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(249, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(78, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Время начала";
+            // 
+            // txtEventStartTime
+            // 
+            this.txtEventStartTime.Location = new System.Drawing.Point(252, 80);
+            this.txtEventStartTime.Name = "txtEventStartTime";
+            this.txtEventStartTime.Size = new System.Drawing.Size(156, 20);
+            this.txtEventStartTime.TabIndex = 19;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(467, 66);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Длительность";
+            // 
+            // txtEventLength
+            // 
+            this.txtEventLength.Location = new System.Drawing.Point(470, 82);
+            this.txtEventLength.Name = "txtEventLength";
+            this.txtEventLength.Size = new System.Drawing.Size(146, 20);
+            this.txtEventLength.TabIndex = 17;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(467, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(62, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Стоимость";
+            // 
+            // txtEventPrice
+            // 
+            this.txtEventPrice.Location = new System.Drawing.Point(470, 38);
+            this.txtEventPrice.Name = "txtEventPrice";
+            this.txtEventPrice.Size = new System.Drawing.Size(146, 20);
+            this.txtEventPrice.TabIndex = 15;
+            // 
+            // cmbEventTypes
+            // 
+            this.cmbEventTypes.FormattingEnabled = true;
+            this.cmbEventTypes.Location = new System.Drawing.Point(14, 77);
+            this.cmbEventTypes.Name = "cmbEventTypes";
+            this.cmbEventTypes.Size = new System.Drawing.Size(180, 21);
+            this.cmbEventTypes.TabIndex = 11;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 60);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(26, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Вид";
             // 
             // label5
             // 
@@ -302,108 +385,37 @@
             this.label7.TabIndex = 9;
             this.label7.Text = "Название";
             // 
-            // cmbEventTypes
+            // btnBack
             // 
-            this.cmbEventTypes.FormattingEnabled = true;
-            this.cmbEventTypes.Location = new System.Drawing.Point(14, 77);
-            this.cmbEventTypes.Name = "cmbEventTypes";
-            this.cmbEventTypes.Size = new System.Drawing.Size(180, 21);
-            this.cmbEventTypes.TabIndex = 11;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 60);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Вид";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(467, 22);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(62, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Стоимость";
-            // 
-            // txtEventPrice
-            // 
-            this.txtEventPrice.Location = new System.Drawing.Point(470, 38);
-            this.txtEventPrice.Name = "txtEventPrice";
-            this.txtEventPrice.Size = new System.Drawing.Size(146, 20);
-            this.txtEventPrice.TabIndex = 15;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(467, 66);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Длительность";
-            // 
-            // txtEventLength
-            // 
-            this.txtEventLength.Location = new System.Drawing.Point(470, 82);
-            this.txtEventLength.Name = "txtEventLength";
-            this.txtEventLength.Size = new System.Drawing.Size(146, 20);
-            this.txtEventLength.TabIndex = 17;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(249, 64);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(78, 13);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Время начала";
-            // 
-            // txtEventStartTime
-            // 
-            this.txtEventStartTime.Location = new System.Drawing.Point(252, 80);
-            this.txtEventStartTime.Name = "txtEventStartTime";
-            this.txtEventStartTime.Size = new System.Drawing.Size(156, 20);
-            this.txtEventStartTime.TabIndex = 19;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(85, 65);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
-            // 
-            // txtEventName
-            // 
-            this.txtEventName.Location = new System.Drawing.Point(14, 37);
-            this.txtEventName.Name = "txtEventName";
-            this.txtEventName.Size = new System.Drawing.Size(180, 20);
-            this.txtEventName.TabIndex = 21;
+            this.btnBack.Location = new System.Drawing.Point(535, 12);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(126, 23);
+            this.btnBack.TabIndex = 21;
+            this.btnBack.Text = "Назад";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // Cashier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 450);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.labelRole);
             this.Controls.Add(this.labelLName);
             this.Controls.Add(this.labelFName);
             this.Name = "Cashier";
-            this.Text = "Cashier";
+            this.Text = "Дом культуры - Кассир";
             this.Load += new System.EventHandler(this.Cashier_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,5 +456,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtEventName;
+        private System.Windows.Forms.Button btnBack;
     }
 }

@@ -98,5 +98,10 @@ namespace Theater
                 MessageBox.Show("Неверные данные!", "Ошибка!", MessageBoxButtons.OK);
             }
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

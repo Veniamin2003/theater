@@ -13,3 +13,7 @@ C:\Study\C#\theater\Theater\obj\Debug\Theater.csproj.CoreCompileInputs.cache
 C:\Study\C#\theater\Theater\obj\Debug\Theater.exe
 C:\Study\C#\theater\Theater\obj\Debug\Theater.pdb
 C:\Study\C#\theater\Theater\obj\Debug\Theater.csproj.ResolveComReference.cache
+C:\Study\C#\theater\Theater\bin\Debug\Theater.exe.manifest
+C:\Study\C#\theater\Theater\bin\Debug\Theater.application
+C:\Study\C#\theater\Theater\obj\Debug\Theater.exe.manifest
+C:\Study\C#\theater\Theater\obj\Debug\Theater.application
