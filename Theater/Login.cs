@@ -101,7 +101,37 @@ namespace Theater
 
         private void Login_Load(object sender, EventArgs e)
         {
+            textBoxPassword.PasswordChar = '*';
+            textBoxLogin.MaxLength = 25;
+            textBoxPassword.MaxLength = 25;
+        }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            if (textBoxPassword.PasswordChar == '\0')
+            {
+                pictureBox2.BringToFront();
+                textBoxPassword.PasswordChar = '*';
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (textBoxPassword.PasswordChar == '*')
+            {
+                pictureBox3.BringToFront();
+                textBoxPassword.PasswordChar = '\0';
+            }
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

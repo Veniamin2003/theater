@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Theater.exe" size="74176">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Theater.exe" size="143808">
       <assemblyIdentity name="Theater" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TCUJsbFr1CSklM4xKwjlxvHwcMtw68IjaMI/0LeMVcs=</dsig:DigestValue>
+        <dsig:DigestValue>Ds78O7oiV6xSA+h2btJafRE3YBIZ3Z/kTkCN0Z6dPvE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

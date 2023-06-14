@@ -26,6 +26,7 @@ namespace Theater
         string eventID;
         string hallID;
         string eventTypeID;
+        bool isEdentifyTicket;
        
 
         DateTime dateNow = DateTime.Now;
@@ -210,41 +211,79 @@ namespace Theater
         {
             if(comboBoxEvents.Text != "" && comboBoxHalls.Text != "" && txtRowNumber.Text != "" && txtPlaceNumber.Text != "")
             {
-                try
+                getSelectedEvent();//получение id выбранного мероприятия
+                getSelectedHalls();// залы получение
+                checkTicket();
+
+                if (isEdentifyTicket)
                 {
-                    getSelectedEvent();//получение id выбранного мероприятия
-                    getSelectedHalls();// зал=ы получение
+                    try
+                    {
+                        string sql = $"INSERT INTO Билеты([Дата покупки], [Код зала], Ряд, Место, [Код сотрудника], [Код мероприятия])VALUES" +
+                            "('" + dateNow + "', '" + hallID + "', '" + txtRowNumber.Text + "', '" + txtPlaceNumber.Text + "', '" + userData.UserID + "', '" + eventID + "' )";
 
-                    string sql = $"INSERT INTO Билеты([Дата покупки], [Код зала], Ряд, Место, [Код сотрудника], [Код мероприятия])VALUES" +
-                        "('" + dateNow + "', '" + hallID + "', '" + txtRowNumber.Text + "', '" + txtPlaceNumber.Text + "', '" + userData.UserID + "', '" + eventID + "' )";
-
-                    database.openConnection();
-
-                    if (database.GetConnection().State != ConnectionState.Open)
                         database.openConnection();
 
-                    SqlCommand command = new SqlCommand(sql, database.GetConnection());
-                    int x = command.ExecuteNonQuery();
+                        if (database.GetConnection().State != ConnectionState.Open)
+                            database.openConnection();
 
-                    database.closeConnection();
+                        SqlCommand command = new SqlCommand(sql, database.GetConnection());
+                        int x = command.ExecuteNonQuery();
 
-                    txtRowNumber.Text = "";
-                    txtPlaceNumber.Text = "";
+                        database.closeConnection();
 
-                    MessageBox.Show(x.ToString() + " запись добавлена.");
-                    database.closeConnection();
+                        txtRowNumber.Text = "";
+                        txtPlaceNumber.Text = "";
+
+                        MessageBox.Show(x.ToString() + " запись добавлена.");
+                        database.closeConnection();
+                    }
+                    catch (Exception ex)
+                    {
+                        database.closeConnection();
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    database.closeConnection();
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Такой билет уже существует");
                 }
+
             }
             else
             {
                 MessageBox.Show("Заполните все поля!");
             }
             
+        }
+
+        private void checkTicket()
+        {
+            database.openConnection();
+
+            string sql = $"select [Код билета], [Код зала], Ряд, Место, [Код мероприятия] from Билеты where " +
+                $"[Код зала] = @idHall and Ряд = @row and Место = @place and [Код мероприятия] = @eventId";
+
+            SqlCommand cmdGetSelectedTickets = new SqlCommand(sql, database.GetConnection());
+            cmdGetSelectedTickets.Parameters.Add(new SqlParameter("@idHall", hallID));
+            cmdGetSelectedTickets.Parameters.Add(new SqlParameter("@row", txtRowNumber.Text));
+            cmdGetSelectedTickets.Parameters.Add(new SqlParameter("@place", txtPlaceNumber.Text));
+            cmdGetSelectedTickets.Parameters.Add(new SqlParameter("@eventId", eventID));
+
+            SqlDataReader reader = cmdGetSelectedTickets.ExecuteReader();
+
+            reader.Read();
+
+            if (reader.HasRows)
+            {
+                isEdentifyTicket = false;
+            }
+            else
+            {
+                isEdentifyTicket = true;
+            }
+
+            reader.Close();
         }
 
         private void addEvent()// добавление записи в бд Мероприятия
@@ -312,6 +351,13 @@ namespace Theater
         }
 
         private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login login = new Login();
+            login.Show();
+        }
+
+        private void Cashier_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Hide();
             Login login = new Login();

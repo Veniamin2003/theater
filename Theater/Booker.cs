@@ -208,7 +208,7 @@ namespace Theater
                 for (j = 0; j <= dataGridView1.ColumnCount - 1; j++) // -2 для того, чобы не брать строчку с кнопкой delete 
                 {
                     wsh.Cells[1, j + 1] = dataGridView1.Columns[j].HeaderText.ToString(); // добавляет к данным название столбцов
-                    wsh.Cells[i + 1, j + 1] = dataGridView1[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
+                    wsh.Cells[i + 2, j + 1] = dataGridView1[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
                 }
             }
 
@@ -227,7 +227,7 @@ namespace Theater
                 for (j = 0; j <= dataGridViewEvent.ColumnCount - 1; j++) // -2 для того, чобы не брать строчку с кнопкой delete 
                 {
                     wsh.Cells[1, j + 1] = dataGridViewEvent.Columns[j].HeaderText.ToString(); // добавляет к данным название столбцов
-                    wsh.Cells[i + 1, j + 1] = dataGridViewEvent[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
+                    wsh.Cells[i + 2, j + 1] = dataGridViewEvent[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
                 }
             }
 
@@ -246,7 +246,7 @@ namespace Theater
                 for (j = 0; j <= dataGridViewEmployers.ColumnCount - 1; j++) // -2 для того, чобы не брать строчку с кнопкой delete 
                 {
                     wsh.Cells[1, j + 1] = dataGridViewEmployers.Columns[j].HeaderText.ToString(); // добавляет к данным название столбцов
-                    wsh.Cells[i + 1, j + 1] = dataGridViewEmployers[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
+                    wsh.Cells[i + 2, j + 1] = dataGridViewEmployers[j, i].Value.ToString(); // заносим данные из грида в таблицу, которая пойдет в эксель
                 }
             }
 
@@ -279,6 +279,13 @@ namespace Theater
         }
 
         private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login login = new Login();
+            login.Show();
+        }
+
+        private void Booker_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Hide();
             Login login = new Login();

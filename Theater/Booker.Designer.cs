@@ -71,6 +71,9 @@
             this.labelLName = new System.Windows.Forms.Label();
             this.labelFName = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tpTickets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -81,6 +84,9 @@
             this.tbEmployers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -88,7 +94,7 @@
             this.tabControl1.Controls.Add(this.tpTickets);
             this.tabControl1.Controls.Add(this.tbEvent);
             this.tabControl1.Controls.Add(this.tbEmployers);
-            this.tabControl1.Location = new System.Drawing.Point(12, 86);
+            this.tabControl1.Location = new System.Drawing.Point(12, 112);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(849, 384);
@@ -96,6 +102,7 @@
             // 
             // tpTickets
             // 
+            this.tpTickets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
             this.tpTickets.Controls.Add(this.dataGridView1);
             this.tpTickets.Controls.Add(this.pictureBox1);
             this.tpTickets.Controls.Add(this.btnExportHistory);
@@ -106,10 +113,10 @@
             this.tpTickets.Size = new System.Drawing.Size(841, 358);
             this.tpTickets.TabIndex = 0;
             this.tpTickets.Text = "Билеты";
-            this.tpTickets.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(228)))), ((int)(((byte)(239)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn8,
@@ -119,9 +126,10 @@
             this.dataGridViewTextBoxColumn12,
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 55);
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 55);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(829, 297);
+            this.dataGridView1.Size = new System.Drawing.Size(841, 303);
             this.dataGridView1.TabIndex = 12;
             // 
             // dataGridViewTextBoxColumn8
@@ -163,7 +171,7 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(307, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(307, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 23);
             this.pictureBox1.TabIndex = 11;
@@ -171,28 +179,33 @@
             // 
             // btnExportHistory
             // 
+            this.btnExportHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(219)))), ((int)(((byte)(203)))));
             this.btnExportHistory.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnExportHistory.Enabled = false;
-            this.btnExportHistory.Location = new System.Drawing.Point(169, 26);
+            this.btnExportHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportHistory.Location = new System.Drawing.Point(169, 6);
             this.btnExportHistory.Name = "btnExportHistory";
-            this.btnExportHistory.Size = new System.Drawing.Size(132, 23);
+            this.btnExportHistory.Size = new System.Drawing.Size(132, 43);
             this.btnExportHistory.TabIndex = 10;
             this.btnExportHistory.Text = "Экспортировать";
-            this.btnExportHistory.UseVisualStyleBackColor = true;
+            this.btnExportHistory.UseVisualStyleBackColor = false;
             this.btnExportHistory.Click += new System.EventHandler(this.btnExportHistory_Click);
             // 
             // btnShow2
             // 
-            this.btnShow2.Location = new System.Drawing.Point(6, 26);
+            this.btnShow2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(232)))), ((int)(((byte)(233)))));
+            this.btnShow2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShow2.Location = new System.Drawing.Point(6, 6);
             this.btnShow2.Name = "btnShow2";
-            this.btnShow2.Size = new System.Drawing.Size(157, 23);
+            this.btnShow2.Size = new System.Drawing.Size(157, 43);
             this.btnShow2.TabIndex = 3;
             this.btnShow2.Text = "Показать";
-            this.btnShow2.UseVisualStyleBackColor = true;
+            this.btnShow2.UseVisualStyleBackColor = false;
             this.btnShow2.Click += new System.EventHandler(this.btnShow2_Click);
             // 
             // tbEvent
             // 
+            this.tbEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
             this.tbEvent.Controls.Add(this.dataGridViewEvent);
             this.tbEvent.Controls.Add(this.pictureBox2);
             this.tbEvent.Controls.Add(this.btnExportEvents);
@@ -203,10 +216,10 @@
             this.tbEvent.Size = new System.Drawing.Size(841, 358);
             this.tbEvent.TabIndex = 1;
             this.tbEvent.Text = "Мероприятия";
-            this.tbEvent.UseVisualStyleBackColor = true;
             // 
             // dataGridViewEvent
             // 
+            this.dataGridViewEvent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(228)))), ((int)(((byte)(239)))));
             this.dataGridViewEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEvent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn15,
@@ -217,9 +230,10 @@
             this.dataGridViewTextBoxColumn20,
             this.dataGridViewTextBoxColumn21,
             this.dataGridViewTextBoxColumn22});
-            this.dataGridViewEvent.Location = new System.Drawing.Point(6, 58);
+            this.dataGridViewEvent.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewEvent.Location = new System.Drawing.Point(0, 58);
             this.dataGridViewEvent.Name = "dataGridViewEvent";
-            this.dataGridViewEvent.Size = new System.Drawing.Size(829, 297);
+            this.dataGridViewEvent.Size = new System.Drawing.Size(841, 300);
             this.dataGridViewEvent.TabIndex = 15;
             // 
             // dataGridViewTextBoxColumn15
@@ -266,7 +280,7 @@
             // 
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(307, 29);
+            this.pictureBox2.Location = new System.Drawing.Point(307, 6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(32, 23);
             this.pictureBox2.TabIndex = 14;
@@ -274,28 +288,33 @@
             // 
             // btnExportEvents
             // 
+            this.btnExportEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(219)))), ((int)(((byte)(203)))));
             this.btnExportEvents.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnExportEvents.Enabled = false;
-            this.btnExportEvents.Location = new System.Drawing.Point(169, 29);
+            this.btnExportEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportEvents.Location = new System.Drawing.Point(169, 6);
             this.btnExportEvents.Name = "btnExportEvents";
-            this.btnExportEvents.Size = new System.Drawing.Size(132, 23);
+            this.btnExportEvents.Size = new System.Drawing.Size(132, 46);
             this.btnExportEvents.TabIndex = 13;
             this.btnExportEvents.Text = "Экспортировать";
-            this.btnExportEvents.UseVisualStyleBackColor = true;
+            this.btnExportEvents.UseVisualStyleBackColor = false;
             this.btnExportEvents.Click += new System.EventHandler(this.btnExportEvents_Click);
             // 
             // btnShowEvents
             // 
-            this.btnShowEvents.Location = new System.Drawing.Point(6, 29);
+            this.btnShowEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(232)))), ((int)(((byte)(233)))));
+            this.btnShowEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowEvents.Location = new System.Drawing.Point(6, 6);
             this.btnShowEvents.Name = "btnShowEvents";
-            this.btnShowEvents.Size = new System.Drawing.Size(157, 23);
+            this.btnShowEvents.Size = new System.Drawing.Size(157, 46);
             this.btnShowEvents.TabIndex = 12;
             this.btnShowEvents.Text = "Показать";
-            this.btnShowEvents.UseVisualStyleBackColor = true;
+            this.btnShowEvents.UseVisualStyleBackColor = false;
             this.btnShowEvents.Click += new System.EventHandler(this.btnShowEvents_Click);
             // 
             // tbEmployers
             // 
+            this.tbEmployers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
             this.tbEmployers.Controls.Add(this.pictureBox3);
             this.tbEmployers.Controls.Add(this.btnEmployersExport);
             this.tbEmployers.Controls.Add(this.btnEmployersShow);
@@ -306,13 +325,12 @@
             this.tbEmployers.Size = new System.Drawing.Size(841, 358);
             this.tbEmployers.TabIndex = 2;
             this.tbEmployers.Text = "Сотрудники";
-            this.tbEmployers.UseVisualStyleBackColor = true;
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox3.Location = new System.Drawing.Point(307, 32);
+            this.pictureBox3.Location = new System.Drawing.Point(307, 6);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(32, 23);
             this.pictureBox3.TabIndex = 19;
@@ -320,28 +338,33 @@
             // 
             // btnEmployersExport
             // 
+            this.btnEmployersExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(219)))), ((int)(((byte)(203)))));
             this.btnEmployersExport.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnEmployersExport.Enabled = false;
-            this.btnEmployersExport.Location = new System.Drawing.Point(169, 32);
+            this.btnEmployersExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployersExport.Location = new System.Drawing.Point(169, 6);
             this.btnEmployersExport.Name = "btnEmployersExport";
-            this.btnEmployersExport.Size = new System.Drawing.Size(132, 23);
+            this.btnEmployersExport.Size = new System.Drawing.Size(132, 49);
             this.btnEmployersExport.TabIndex = 18;
             this.btnEmployersExport.Text = "Экспортировать";
-            this.btnEmployersExport.UseVisualStyleBackColor = true;
+            this.btnEmployersExport.UseVisualStyleBackColor = false;
             this.btnEmployersExport.Click += new System.EventHandler(this.btnEmployersExport_Click);
             // 
             // btnEmployersShow
             // 
-            this.btnEmployersShow.Location = new System.Drawing.Point(6, 32);
+            this.btnEmployersShow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(232)))), ((int)(((byte)(233)))));
+            this.btnEmployersShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployersShow.Location = new System.Drawing.Point(6, 6);
             this.btnEmployersShow.Name = "btnEmployersShow";
-            this.btnEmployersShow.Size = new System.Drawing.Size(157, 23);
+            this.btnEmployersShow.Size = new System.Drawing.Size(157, 49);
             this.btnEmployersShow.TabIndex = 17;
             this.btnEmployersShow.Text = "Показать";
-            this.btnEmployersShow.UseVisualStyleBackColor = true;
+            this.btnEmployersShow.UseVisualStyleBackColor = false;
             this.btnEmployersShow.Click += new System.EventHandler(this.btnEmployersShow_Click);
             // 
             // dataGridViewEmployers
             // 
+            this.dataGridViewEmployers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(228)))), ((int)(((byte)(239)))));
             this.dataGridViewEmployers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmployers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -351,9 +374,10 @@
             this.address,
             this.phone,
             this.role});
-            this.dataGridViewEmployers.Location = new System.Drawing.Point(6, 61);
+            this.dataGridViewEmployers.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewEmployers.Location = new System.Drawing.Point(0, 61);
             this.dataGridViewEmployers.Name = "dataGridViewEmployers";
-            this.dataGridViewEmployers.Size = new System.Drawing.Size(829, 297);
+            this.dataGridViewEmployers.Size = new System.Drawing.Size(841, 297);
             this.dataGridViewEmployers.TabIndex = 16;
             // 
             // dataGridViewTextBoxColumn1
@@ -394,52 +418,90 @@
             // labelRole
             // 
             this.labelRole.AutoSize = true;
-            this.labelRole.Location = new System.Drawing.Point(13, 47);
+            this.labelRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.labelRole.Location = new System.Drawing.Point(77, 52);
             this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(65, 13);
+            this.labelRole.Size = new System.Drawing.Size(104, 20);
             this.labelRole.TabIndex = 5;
             this.labelRole.Text = "Должность";
             // 
             // labelLName
             // 
             this.labelLName.AutoSize = true;
-            this.labelLName.Location = new System.Drawing.Point(13, 34);
+            this.labelLName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.labelLName.Location = new System.Drawing.Point(77, 32);
             this.labelLName.Name = "labelLName";
-            this.labelLName.Size = new System.Drawing.Size(56, 13);
+            this.labelLName.Size = new System.Drawing.Size(88, 20);
             this.labelLName.TabIndex = 4;
             this.labelLName.Text = "Фамилия";
             // 
             // labelFName
             // 
             this.labelFName.AutoSize = true;
-            this.labelFName.Location = new System.Drawing.Point(13, 21);
+            this.labelFName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFName.Location = new System.Drawing.Point(77, 12);
             this.labelFName.Name = "labelFName";
-            this.labelFName.Size = new System.Drawing.Size(29, 13);
+            this.labelFName.Size = new System.Drawing.Size(43, 20);
             this.labelFName.TabIndex = 3;
             this.labelFName.Text = "Имя";
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(725, 21);
+            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(203)))), ((int)(((byte)(217)))));
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Location = new System.Drawing.Point(707, 5);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(126, 23);
+            this.btnBack.Size = new System.Drawing.Size(126, 38);
             this.btnBack.TabIndex = 20;
-            this.btnBack.Text = "Назад";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Text = "Выйти";
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox4.Location = new System.Drawing.Point(4, 5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(55, 67);
+            this.pictureBox4.TabIndex = 21;
+            this.pictureBox4.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(246)))), ((int)(((byte)(240)))));
+            this.panel1.Controls.Add(this.pictureBox5);
+            this.panel1.Controls.Add(this.btnBack);
+            this.panel1.Controls.Add(this.pictureBox4);
+            this.panel1.Controls.Add(this.labelFName);
+            this.panel1.Controls.Add(this.labelLName);
+            this.panel1.Controls.Add(this.labelRole);
+            this.panel1.Location = new System.Drawing.Point(12, 10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(845, 96);
+            this.panel1.TabIndex = 29;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox5.Location = new System.Drawing.Point(327, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(129, 93);
+            this.pictureBox5.TabIndex = 22;
+            this.pictureBox5.TabStop = false;
             // 
             // Booker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 482);
-            this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.labelRole);
-            this.Controls.Add(this.labelLName);
-            this.Controls.Add(this.labelFName);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(246)))), ((int)(((byte)(234)))));
+            this.ClientSize = new System.Drawing.Size(873, 508);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
             this.Name = "Booker";
             this.Text = "Дом культуры - Бухгалтер";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Booker_FormClosed);
             this.Load += new System.EventHandler(this.Booker_Load);
             this.tabControl1.ResumeLayout(false);
             this.tpTickets.ResumeLayout(false);
@@ -451,8 +513,11 @@
             this.tbEmployers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -500,5 +565,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn phone;
         private System.Windows.Forms.DataGridViewTextBoxColumn role;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }
