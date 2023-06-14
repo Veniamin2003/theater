@@ -31,17 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Booker));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpTickets = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnExportHistory = new System.Windows.Forms.Button();
-            this.btnShow2 = new System.Windows.Forms.Button();
-            this.tbEvent = new System.Windows.Forms.TabPage();
-            this.tbEmployers = new System.Windows.Forms.TabPage();
-            this.labelRole = new System.Windows.Forms.Label();
-            this.labelLName = new System.Windows.Forms.Label();
-            this.labelFName = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnExportEvents = new System.Windows.Forms.Button();
-            this.btnShowEvents = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +39,10 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnExportHistory = new System.Windows.Forms.Button();
+            this.btnShow2 = new System.Windows.Forms.Button();
+            this.tbEvent = new System.Windows.Forms.TabPage();
             this.dataGridViewEvent = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,10 +52,14 @@
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewEmployers = new System.Windows.Forms.DataGridView();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnExportEvents = new System.Windows.Forms.Button();
+            this.btnShowEvents = new System.Windows.Forms.Button();
+            this.tbEmployers = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnEmployersExport = new System.Windows.Forms.Button();
             this.btnEmployersShow = new System.Windows.Forms.Button();
+            this.dataGridViewEmployers = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,17 +67,20 @@
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelRole = new System.Windows.Forms.Label();
+            this.labelLName = new System.Windows.Forms.Label();
+            this.labelFName = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tpTickets.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tbEvent.SuspendLayout();
-            this.tbEmployers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEvent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tbEmployers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployers)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -107,125 +107,6 @@
             this.tpTickets.TabIndex = 0;
             this.tpTickets.Text = "Билеты";
             this.tpTickets.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(307, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 23);
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnExportHistory
-            // 
-            this.btnExportHistory.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnExportHistory.Enabled = false;
-            this.btnExportHistory.Location = new System.Drawing.Point(169, 26);
-            this.btnExportHistory.Name = "btnExportHistory";
-            this.btnExportHistory.Size = new System.Drawing.Size(132, 23);
-            this.btnExportHistory.TabIndex = 10;
-            this.btnExportHistory.Text = "Экспортировать";
-            this.btnExportHistory.UseVisualStyleBackColor = true;
-            this.btnExportHistory.Click += new System.EventHandler(this.btnExportHistory_Click);
-            // 
-            // btnShow2
-            // 
-            this.btnShow2.Location = new System.Drawing.Point(6, 26);
-            this.btnShow2.Name = "btnShow2";
-            this.btnShow2.Size = new System.Drawing.Size(157, 23);
-            this.btnShow2.TabIndex = 3;
-            this.btnShow2.Text = "Показать";
-            this.btnShow2.UseVisualStyleBackColor = true;
-            this.btnShow2.Click += new System.EventHandler(this.btnShow2_Click);
-            // 
-            // tbEvent
-            // 
-            this.tbEvent.Controls.Add(this.dataGridViewEvent);
-            this.tbEvent.Controls.Add(this.pictureBox2);
-            this.tbEvent.Controls.Add(this.btnExportEvents);
-            this.tbEvent.Controls.Add(this.btnShowEvents);
-            this.tbEvent.Location = new System.Drawing.Point(4, 22);
-            this.tbEvent.Name = "tbEvent";
-            this.tbEvent.Padding = new System.Windows.Forms.Padding(3);
-            this.tbEvent.Size = new System.Drawing.Size(841, 358);
-            this.tbEvent.TabIndex = 1;
-            this.tbEvent.Text = "Мероприятия";
-            this.tbEvent.UseVisualStyleBackColor = true;
-            // 
-            // tbEmployers
-            // 
-            this.tbEmployers.Controls.Add(this.pictureBox3);
-            this.tbEmployers.Controls.Add(this.btnEmployersExport);
-            this.tbEmployers.Controls.Add(this.btnEmployersShow);
-            this.tbEmployers.Controls.Add(this.dataGridViewEmployers);
-            this.tbEmployers.Location = new System.Drawing.Point(4, 22);
-            this.tbEmployers.Name = "tbEmployers";
-            this.tbEmployers.Padding = new System.Windows.Forms.Padding(3);
-            this.tbEmployers.Size = new System.Drawing.Size(841, 358);
-            this.tbEmployers.TabIndex = 2;
-            this.tbEmployers.Text = "Сотрудники";
-            this.tbEmployers.UseVisualStyleBackColor = true;
-            // 
-            // labelRole
-            // 
-            this.labelRole.AutoSize = true;
-            this.labelRole.Location = new System.Drawing.Point(13, 47);
-            this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(65, 13);
-            this.labelRole.TabIndex = 5;
-            this.labelRole.Text = "Должность";
-            // 
-            // labelLName
-            // 
-            this.labelLName.AutoSize = true;
-            this.labelLName.Location = new System.Drawing.Point(13, 34);
-            this.labelLName.Name = "labelLName";
-            this.labelLName.Size = new System.Drawing.Size(56, 13);
-            this.labelLName.TabIndex = 4;
-            this.labelLName.Text = "Фамилия";
-            // 
-            // labelFName
-            // 
-            this.labelFName.AutoSize = true;
-            this.labelFName.Location = new System.Drawing.Point(13, 21);
-            this.labelFName.Name = "labelFName";
-            this.labelFName.Size = new System.Drawing.Size(29, 13);
-            this.labelFName.TabIndex = 3;
-            this.labelFName.Text = "Имя";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(307, 29);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 23);
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btnExportEvents
-            // 
-            this.btnExportEvents.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnExportEvents.Enabled = false;
-            this.btnExportEvents.Location = new System.Drawing.Point(169, 29);
-            this.btnExportEvents.Name = "btnExportEvents";
-            this.btnExportEvents.Size = new System.Drawing.Size(132, 23);
-            this.btnExportEvents.TabIndex = 13;
-            this.btnExportEvents.Text = "Экспортировать";
-            this.btnExportEvents.UseVisualStyleBackColor = true;
-            this.btnExportEvents.Click += new System.EventHandler(this.btnExportEvents_Click);
-            // 
-            // btnShowEvents
-            // 
-            this.btnShowEvents.Location = new System.Drawing.Point(6, 29);
-            this.btnShowEvents.Name = "btnShowEvents";
-            this.btnShowEvents.Size = new System.Drawing.Size(157, 23);
-            this.btnShowEvents.TabIndex = 12;
-            this.btnShowEvents.Text = "Показать";
-            this.btnShowEvents.UseVisualStyleBackColor = true;
-            this.btnShowEvents.Click += new System.EventHandler(this.btnShowEvents_Click);
             // 
             // dataGridView1
             // 
@@ -277,6 +158,52 @@
             // 
             this.dataGridViewTextBoxColumn14.HeaderText = "Мероприятие";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(307, 26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 23);
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnExportHistory
+            // 
+            this.btnExportHistory.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnExportHistory.Enabled = false;
+            this.btnExportHistory.Location = new System.Drawing.Point(169, 26);
+            this.btnExportHistory.Name = "btnExportHistory";
+            this.btnExportHistory.Size = new System.Drawing.Size(132, 23);
+            this.btnExportHistory.TabIndex = 10;
+            this.btnExportHistory.Text = "Экспортировать";
+            this.btnExportHistory.UseVisualStyleBackColor = true;
+            this.btnExportHistory.Click += new System.EventHandler(this.btnExportHistory_Click);
+            // 
+            // btnShow2
+            // 
+            this.btnShow2.Location = new System.Drawing.Point(6, 26);
+            this.btnShow2.Name = "btnShow2";
+            this.btnShow2.Size = new System.Drawing.Size(157, 23);
+            this.btnShow2.TabIndex = 3;
+            this.btnShow2.Text = "Показать";
+            this.btnShow2.UseVisualStyleBackColor = true;
+            this.btnShow2.Click += new System.EventHandler(this.btnShow2_Click);
+            // 
+            // tbEvent
+            // 
+            this.tbEvent.Controls.Add(this.dataGridViewEvent);
+            this.tbEvent.Controls.Add(this.pictureBox2);
+            this.tbEvent.Controls.Add(this.btnExportEvents);
+            this.tbEvent.Controls.Add(this.btnShowEvents);
+            this.tbEvent.Location = new System.Drawing.Point(4, 22);
+            this.tbEvent.Name = "tbEvent";
+            this.tbEvent.Padding = new System.Windows.Forms.Padding(3);
+            this.tbEvent.Size = new System.Drawing.Size(841, 358);
+            this.tbEvent.TabIndex = 1;
+            this.tbEvent.Text = "Мероприятия";
+            this.tbEvent.UseVisualStyleBackColor = true;
             // 
             // dataGridViewEvent
             // 
@@ -335,21 +262,51 @@
             this.dataGridViewTextBoxColumn22.HeaderText = "Стоимость";
             this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
             // 
-            // dataGridViewEmployers
+            // pictureBox2
             // 
-            this.dataGridViewEmployers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEmployers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.lname,
-            this.name,
-            this.patronymic,
-            this.address,
-            this.phone,
-            this.role});
-            this.dataGridViewEmployers.Location = new System.Drawing.Point(6, 61);
-            this.dataGridViewEmployers.Name = "dataGridViewEmployers";
-            this.dataGridViewEmployers.Size = new System.Drawing.Size(829, 297);
-            this.dataGridViewEmployers.TabIndex = 16;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Location = new System.Drawing.Point(307, 29);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(32, 23);
+            this.pictureBox2.TabIndex = 14;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnExportEvents
+            // 
+            this.btnExportEvents.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnExportEvents.Enabled = false;
+            this.btnExportEvents.Location = new System.Drawing.Point(169, 29);
+            this.btnExportEvents.Name = "btnExportEvents";
+            this.btnExportEvents.Size = new System.Drawing.Size(132, 23);
+            this.btnExportEvents.TabIndex = 13;
+            this.btnExportEvents.Text = "Экспортировать";
+            this.btnExportEvents.UseVisualStyleBackColor = true;
+            this.btnExportEvents.Click += new System.EventHandler(this.btnExportEvents_Click);
+            // 
+            // btnShowEvents
+            // 
+            this.btnShowEvents.Location = new System.Drawing.Point(6, 29);
+            this.btnShowEvents.Name = "btnShowEvents";
+            this.btnShowEvents.Size = new System.Drawing.Size(157, 23);
+            this.btnShowEvents.TabIndex = 12;
+            this.btnShowEvents.Text = "Показать";
+            this.btnShowEvents.UseVisualStyleBackColor = true;
+            this.btnShowEvents.Click += new System.EventHandler(this.btnShowEvents_Click);
+            // 
+            // tbEmployers
+            // 
+            this.tbEmployers.Controls.Add(this.pictureBox3);
+            this.tbEmployers.Controls.Add(this.btnEmployersExport);
+            this.tbEmployers.Controls.Add(this.btnEmployersShow);
+            this.tbEmployers.Controls.Add(this.dataGridViewEmployers);
+            this.tbEmployers.Location = new System.Drawing.Point(4, 22);
+            this.tbEmployers.Name = "tbEmployers";
+            this.tbEmployers.Padding = new System.Windows.Forms.Padding(3);
+            this.tbEmployers.Size = new System.Drawing.Size(841, 358);
+            this.tbEmployers.TabIndex = 2;
+            this.tbEmployers.Text = "Сотрудники";
+            this.tbEmployers.UseVisualStyleBackColor = true;
             // 
             // pictureBox3
             // 
@@ -382,6 +339,22 @@
             this.btnEmployersShow.Text = "Показать";
             this.btnEmployersShow.UseVisualStyleBackColor = true;
             this.btnEmployersShow.Click += new System.EventHandler(this.btnEmployersShow_Click);
+            // 
+            // dataGridViewEmployers
+            // 
+            this.dataGridViewEmployers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmployers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.lname,
+            this.name,
+            this.patronymic,
+            this.address,
+            this.phone,
+            this.role});
+            this.dataGridViewEmployers.Location = new System.Drawing.Point(6, 61);
+            this.dataGridViewEmployers.Name = "dataGridViewEmployers";
+            this.dataGridViewEmployers.Size = new System.Drawing.Size(829, 297);
+            this.dataGridViewEmployers.TabIndex = 16;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -418,9 +391,36 @@
             this.role.HeaderText = "Должность";
             this.role.Name = "role";
             // 
+            // labelRole
+            // 
+            this.labelRole.AutoSize = true;
+            this.labelRole.Location = new System.Drawing.Point(13, 47);
+            this.labelRole.Name = "labelRole";
+            this.labelRole.Size = new System.Drawing.Size(65, 13);
+            this.labelRole.TabIndex = 5;
+            this.labelRole.Text = "Должность";
+            // 
+            // labelLName
+            // 
+            this.labelLName.AutoSize = true;
+            this.labelLName.Location = new System.Drawing.Point(13, 34);
+            this.labelLName.Name = "labelLName";
+            this.labelLName.Size = new System.Drawing.Size(56, 13);
+            this.labelLName.TabIndex = 4;
+            this.labelLName.Text = "Фамилия";
+            // 
+            // labelFName
+            // 
+            this.labelFName.AutoSize = true;
+            this.labelFName.Location = new System.Drawing.Point(13, 21);
+            this.labelFName.Name = "labelFName";
+            this.labelFName.Size = new System.Drawing.Size(29, 13);
+            this.labelFName.TabIndex = 3;
+            this.labelFName.Text = "Имя";
+            // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(725, 24);
+            this.btnBack.Location = new System.Drawing.Point(725, 21);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(126, 23);
             this.btnBack.TabIndex = 20;
@@ -443,14 +443,14 @@
             this.Load += new System.EventHandler(this.Booker_Load);
             this.tabControl1.ResumeLayout(false);
             this.tpTickets.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tbEvent.ResumeLayout(false);
-            this.tbEmployers.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEvent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tbEmployers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
