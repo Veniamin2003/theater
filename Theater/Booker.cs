@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,6 +35,7 @@ namespace Theater
         // билеты
         private void btnShow2_Click(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
             LoadDataTicketsHistory();
             btnExportHistory.Enabled = true;
         }
@@ -43,6 +47,7 @@ namespace Theater
         // мероприятия
         private void btnShowEvents_Click(object sender, EventArgs e)
         {
+            dataGridViewEvent.Rows.Clear();
             LoadDataEventsHistory();
             btnExportEvents.Enabled = true;
         }
@@ -54,6 +59,7 @@ namespace Theater
         // сотрудники
         private void btnEmployersShow_Click(object sender, EventArgs e)
         {
+            dataGridViewEmployers.Rows.Clear(); 
             LoadDataEmployers();
             btnEmployersExport.Enabled= true;
         }
@@ -290,6 +296,163 @@ namespace Theater
             this.Hide();
             Login login = new Login();
             login.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+
+            string date = txtTicketSearch.Text;
+            try
+            {
+                dataBase.openConnection();
+
+                string query = $"SELECT * FROM [Билеты] where [Дата покупки] = '{date}'";
+
+                SqlCommand command = new SqlCommand(query, dataBase.GetConnection());
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        data.Add(new string[7]);
+
+                        data[data.Count - 1][0] = reader[0].ToString();
+                        data[data.Count - 1][1] = reader[1].ToString();
+                        data[data.Count - 1][2] = reader[2].ToString();
+                        data[data.Count - 1][3] = reader[3].ToString();
+                        data[data.Count - 1][4] = reader[4].ToString();
+                        data[data.Count - 1][5] = reader[5].ToString();
+                        data[data.Count - 1][6] = reader[6].ToString();
+
+                        foreach (string[] s in data)
+                            dataGridView1.Rows.Add(s);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Билетов по данному запросу не найдено.");
+                }
+
+                reader.Close();
+
+                dataBase.closeConnection();
+            }
+
+            catch (Exception ex)
+            {
+                dataBase.closeConnection();
+                MessageBox.Show("Похоже вы ввели что-то не то. Пожалуйста, введите дату.");
+            }
+        }
+
+        private void btnEventSearch_Click(object sender, EventArgs e)
+        {
+            dataGridViewEvent.Rows.Clear();
+
+            string name = txtEventSearch.Text;
+            try
+            {
+                dataBase.openConnection();
+
+                string query = $"SELECT * FROM Мероприятия where Наименование = '{name}'";
+
+                SqlCommand command = new SqlCommand(query, dataBase.GetConnection());
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        data.Add(new string[8]);
+
+                        data[data.Count - 1][0] = reader[0].ToString();
+                        data[data.Count - 1][1] = reader[1].ToString();
+                        data[data.Count - 1][2] = reader[2].ToString();
+                        data[data.Count - 1][3] = reader[3].ToString();
+                        data[data.Count - 1][4] = reader[4].ToString();
+                        data[data.Count - 1][5] = reader[5].ToString();
+                        data[data.Count - 1][6] = reader[6].ToString();
+                        data[data.Count - 1][7] = reader[7].ToString();
+
+                        foreach (string[] s in data)
+                            dataGridViewEvent.Rows.Add(s);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Мероприятий по данному запросу не найдено.");
+                }
+
+                reader.Close();
+
+                dataBase.closeConnection();
+            }
+
+            catch (Exception ex)
+            {
+                dataBase.closeConnection();
+                MessageBox.Show("Похоже вы ввели что-то не то. Пожалуйста, введите название мероприятия.");
+            }
+        }
+
+        private void btnEmpSearch_Click(object sender, EventArgs e)
+        {
+            dataGridViewEmployers.Rows.Clear();
+
+            string name = txtEmpSearch.Text;
+            try
+            {
+                dataBase.openConnection();
+
+                string query = $"SELECT * FROM Сотрудники where Имя = '{name}'";
+
+                SqlCommand command = new SqlCommand(query, dataBase.GetConnection());
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        data.Add(new string[7]);
+
+                        data[data.Count - 1][0] = reader[0].ToString();
+                        data[data.Count - 1][1] = reader[1].ToString();
+                        data[data.Count - 1][2] = reader[2].ToString();
+                        data[data.Count - 1][3] = reader[3].ToString();
+                        data[data.Count - 1][4] = reader[4].ToString();
+                        data[data.Count - 1][5] = reader[5].ToString();
+                        data[data.Count - 1][6] = reader[6].ToString();
+
+                        foreach (string[] s in data)
+                            dataGridViewEmployers.Rows.Add(s);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Сотрудников по данному имени не найдено.");
+                }
+
+                reader.Close();
+
+                dataBase.closeConnection();
+            }
+
+            catch (Exception ex)
+            {
+                dataBase.closeConnection();
+                MessageBox.Show("Похоже вы ввели что-то не то. Пожалуйста, введите имя сотрудника.");
+            }
         }
     }
 }

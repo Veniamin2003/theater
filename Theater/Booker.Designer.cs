@@ -40,7 +40,6 @@
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnExportHistory = new System.Windows.Forms.Button();
             this.btnShow2 = new System.Windows.Forms.Button();
             this.tbEvent = new System.Windows.Forms.TabPage();
             this.dataGridViewEvent = new System.Windows.Forms.DataGridView();
@@ -74,6 +73,16 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.txtTicketSearch = new System.Windows.Forms.TextBox();
+            this.btnExportHistory = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnEventSearch = new System.Windows.Forms.Button();
+            this.txtEventSearch = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnEmpSearch = new System.Windows.Forms.Button();
+            this.txtEmpSearch = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tpTickets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -103,6 +112,9 @@
             // tpTickets
             // 
             this.tpTickets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
+            this.tpTickets.Controls.Add(this.label1);
+            this.tpTickets.Controls.Add(this.button1);
+            this.tpTickets.Controls.Add(this.txtTicketSearch);
             this.tpTickets.Controls.Add(this.dataGridView1);
             this.tpTickets.Controls.Add(this.pictureBox1);
             this.tpTickets.Controls.Add(this.btnExportHistory);
@@ -127,9 +139,9 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 55);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 68);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(841, 303);
+            this.dataGridView1.Size = new System.Drawing.Size(841, 290);
             this.dataGridView1.TabIndex = 12;
             // 
             // dataGridViewTextBoxColumn8
@@ -171,31 +183,17 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(307, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(307, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 23);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
-            // btnExportHistory
-            // 
-            this.btnExportHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(219)))), ((int)(((byte)(203)))));
-            this.btnExportHistory.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnExportHistory.Enabled = false;
-            this.btnExportHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportHistory.Location = new System.Drawing.Point(169, 6);
-            this.btnExportHistory.Name = "btnExportHistory";
-            this.btnExportHistory.Size = new System.Drawing.Size(132, 43);
-            this.btnExportHistory.TabIndex = 10;
-            this.btnExportHistory.Text = "Экспортировать";
-            this.btnExportHistory.UseVisualStyleBackColor = false;
-            this.btnExportHistory.Click += new System.EventHandler(this.btnExportHistory_Click);
-            // 
             // btnShow2
             // 
             this.btnShow2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(232)))), ((int)(((byte)(233)))));
             this.btnShow2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShow2.Location = new System.Drawing.Point(6, 6);
+            this.btnShow2.Location = new System.Drawing.Point(6, 19);
             this.btnShow2.Name = "btnShow2";
             this.btnShow2.Size = new System.Drawing.Size(157, 43);
             this.btnShow2.TabIndex = 3;
@@ -206,6 +204,9 @@
             // tbEvent
             // 
             this.tbEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
+            this.tbEvent.Controls.Add(this.label2);
+            this.tbEvent.Controls.Add(this.btnEventSearch);
+            this.tbEvent.Controls.Add(this.txtEventSearch);
             this.tbEvent.Controls.Add(this.dataGridViewEvent);
             this.tbEvent.Controls.Add(this.pictureBox2);
             this.tbEvent.Controls.Add(this.btnExportEvents);
@@ -315,6 +316,9 @@
             // tbEmployers
             // 
             this.tbEmployers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(205)))), ((int)(((byte)(215)))));
+            this.tbEmployers.Controls.Add(this.label3);
+            this.tbEmployers.Controls.Add(this.btnEmpSearch);
+            this.tbEmployers.Controls.Add(this.txtEmpSearch);
             this.tbEmployers.Controls.Add(this.pictureBox3);
             this.tbEmployers.Controls.Add(this.btnEmployersExport);
             this.tbEmployers.Controls.Add(this.btnEmployersShow);
@@ -491,6 +495,113 @@
             this.pictureBox5.TabIndex = 22;
             this.pictureBox5.TabStop = false;
             // 
+            // txtTicketSearch
+            // 
+            this.txtTicketSearch.Location = new System.Drawing.Point(600, 34);
+            this.txtTicketSearch.Multiline = true;
+            this.txtTicketSearch.Name = "txtTicketSearch";
+            this.txtTicketSearch.Size = new System.Drawing.Size(135, 28);
+            this.txtTicketSearch.TabIndex = 13;
+            // 
+            // btnExportHistory
+            // 
+            this.btnExportHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(219)))), ((int)(((byte)(203)))));
+            this.btnExportHistory.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnExportHistory.Enabled = false;
+            this.btnExportHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportHistory.Location = new System.Drawing.Point(169, 19);
+            this.btnExportHistory.Name = "btnExportHistory";
+            this.btnExportHistory.Size = new System.Drawing.Size(132, 43);
+            this.btnExportHistory.TabIndex = 10;
+            this.btnExportHistory.Text = "Экспортировать";
+            this.btnExportHistory.UseVisualStyleBackColor = false;
+            this.btnExportHistory.Click += new System.EventHandler(this.btnExportHistory_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(219)))), ((int)(((byte)(203)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(741, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(88, 43);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Поиск";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(596, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 20);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Поиск по дате";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(453, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(289, 20);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Поиск по названию мероприятия";
+            // 
+            // btnEventSearch
+            // 
+            this.btnEventSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(219)))), ((int)(((byte)(203)))));
+            this.btnEventSearch.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnEventSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEventSearch.Location = new System.Drawing.Point(748, 9);
+            this.btnEventSearch.Name = "btnEventSearch";
+            this.btnEventSearch.Size = new System.Drawing.Size(88, 43);
+            this.btnEventSearch.TabIndex = 25;
+            this.btnEventSearch.Text = "Поиск";
+            this.btnEventSearch.UseVisualStyleBackColor = false;
+            this.btnEventSearch.Click += new System.EventHandler(this.btnEventSearch_Click);
+            // 
+            // txtEventSearch
+            // 
+            this.txtEventSearch.Location = new System.Drawing.Point(457, 24);
+            this.txtEventSearch.Multiline = true;
+            this.txtEventSearch.Name = "txtEventSearch";
+            this.txtEventSearch.Size = new System.Drawing.Size(285, 28);
+            this.txtEventSearch.TabIndex = 24;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(596, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(142, 20);
+            this.label3.TabIndex = 29;
+            this.label3.Text = "Поиск по имени";
+            // 
+            // btnEmpSearch
+            // 
+            this.btnEmpSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(219)))), ((int)(((byte)(203)))));
+            this.btnEmpSearch.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnEmpSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmpSearch.Location = new System.Drawing.Point(743, 12);
+            this.btnEmpSearch.Name = "btnEmpSearch";
+            this.btnEmpSearch.Size = new System.Drawing.Size(88, 43);
+            this.btnEmpSearch.TabIndex = 28;
+            this.btnEmpSearch.Text = "Поиск";
+            this.btnEmpSearch.UseVisualStyleBackColor = false;
+            this.btnEmpSearch.Click += new System.EventHandler(this.btnEmpSearch_Click);
+            // 
+            // txtEmpSearch
+            // 
+            this.txtEmpSearch.Location = new System.Drawing.Point(600, 27);
+            this.txtEmpSearch.Multiline = true;
+            this.txtEmpSearch.Name = "txtEmpSearch";
+            this.txtEmpSearch.Size = new System.Drawing.Size(137, 28);
+            this.txtEmpSearch.TabIndex = 27;
+            // 
             // Booker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,18 +610,23 @@
             this.ClientSize = new System.Drawing.Size(873, 508);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Booker";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Дом культуры - Бухгалтер";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Booker_FormClosed);
             this.Load += new System.EventHandler(this.Booker_Load);
             this.tabControl1.ResumeLayout(false);
             this.tpTickets.ResumeLayout(false);
+            this.tpTickets.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tbEvent.ResumeLayout(false);
+            this.tbEvent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEvent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tbEmployers.ResumeLayout(false);
+            this.tbEmployers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -529,7 +645,6 @@
         private System.Windows.Forms.TabPage tbEmployers;
         private System.Windows.Forms.Button btnShow2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnExportHistory;
         private System.Windows.Forms.Label labelRole;
         private System.Windows.Forms.Label labelLName;
         private System.Windows.Forms.Label labelFName;
@@ -568,5 +683,15 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtTicketSearch;
+        private System.Windows.Forms.Button btnExportHistory;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnEventSearch;
+        private System.Windows.Forms.TextBox txtEventSearch;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnEmpSearch;
+        private System.Windows.Forms.TextBox txtEmpSearch;
     }
 }

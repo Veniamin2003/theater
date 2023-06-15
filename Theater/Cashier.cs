@@ -363,5 +363,67 @@ namespace Theater
             Login login = new Login();
             login.Show();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRearchRow_Click(object sender, EventArgs e)
+        {
+            if (comboBoxEvents.Text != "" && comboBoxHalls.Text != "" && txtRowNumber.Text != "")
+            {
+                dataGridViewEmployers.Rows.Clear();
+
+                getSelectedEvent();//получение id выбранного мероприятия
+                getSelectedHalls();// залы получение
+
+                string rowNumber = txtRowNumber.Text;
+                try
+                {
+                    database.openConnection();
+
+                    string query = $"SELECT Место FROM Билеты where [Код мероприятия] = '{eventID}' and [Код зала] = '{hallID}' and Ряд = '{rowNumber}' ";
+
+                    SqlCommand command = new SqlCommand(query, database.GetConnection());
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    List<string[]> data = new List<string[]>();
+
+                    if (reader.HasRows)
+                    {
+
+                        while (reader.Read())
+                        {
+                            data.Add(new string[1]);
+
+                            data[data.Count - 1][0] = reader[0].ToString();
+                        }
+
+                        reader.Close();
+
+                        database.closeConnection();
+
+                        foreach (string[] s in data)
+                            dataGridViewEmployers.Rows.Add(s);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Занятых мест не найдено.");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    database.closeConnection();
+                    MessageBox.Show("Ошибка");
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Не все поля заполнены");
+            }
+        }
     }
 }

@@ -393,7 +393,9 @@
             this.ClientSize = new System.Drawing.Size(919, 563);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tPageEvents);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Admin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Дом культуры - Администратор";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Admin_FormClosed);
             this.Load += new System.EventHandler(this.Admin_Load);
