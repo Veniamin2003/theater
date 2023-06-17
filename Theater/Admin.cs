@@ -20,11 +20,17 @@ namespace Theater
         DataBase dataBase = new DataBase();
         private SqlConnection sqlConnection = null;
 
-        private SqlCommandBuilder sqlBuilder = null;
+        private SqlCommandBuilder sqlBuilderTicket = null;
+        private SqlCommandBuilder sqlBuilderEvent = null;
+        private SqlCommandBuilder sqlBuilderEmployer = null;
 
-        private SqlDataAdapter sqlDataAdapter = null;
+        private SqlDataAdapter sqlDataAdapterTicket = null;
+        private SqlDataAdapter sqlDataAdapterEvent = null;
+        private SqlDataAdapter sqlDataAdapterEmployer = null;
 
-        private DataSet dataSet = null;
+        private DataSet dataSetTicket = null;
+        private DataSet dataSetEvent = null;
+        private DataSet dataSetEmployers = null;
 
         private bool newRowAdding = false;
 
@@ -88,19 +94,19 @@ namespace Theater
             try
             {
                 dataBase.openConnection();
-                sqlDataAdapter = new SqlDataAdapter("SELECT *, 'Delete' AS [Command] FROM [Билеты]", dataBase.GetConnection());
+                sqlDataAdapterTicket = new SqlDataAdapter("SELECT *, 'Delete' AS [Command] FROM [Билеты]", dataBase.GetConnection());
 
-                sqlBuilder = new SqlCommandBuilder(sqlDataAdapter);
+                sqlBuilderTicket = new SqlCommandBuilder(sqlDataAdapterTicket);
 
-                sqlBuilder.GetInsertCommand();
-                sqlBuilder.GetUpdateCommand();
-                sqlBuilder.GetDeleteCommand();
+                sqlBuilderTicket.GetInsertCommand();
+                sqlBuilderTicket.GetUpdateCommand();
+                sqlBuilderTicket.GetDeleteCommand();
 
-                dataSet = new DataSet();
+                dataSetTicket = new DataSet();
 
-                sqlDataAdapter.Fill(dataSet, "Билеты");
+                sqlDataAdapterTicket.Fill(dataSetTicket, "Билеты");
 
-                dataGridViewTickets.DataSource = dataSet.Tables["Билеты"];
+                dataGridViewTickets.DataSource = dataSetTicket.Tables["Билеты"];
 
                 for (int i = 0; i < dataGridViewTickets.Rows.Count; i++)
                 {
@@ -157,9 +163,9 @@ namespace Theater
 
                             dataGridViewTickets.Rows.RemoveAt(rowIndex); // удаление только из приложения
 
-                            dataSet.Tables["Билеты"].Rows[rowIndex].Delete(); // удаление из самой базы данных
+                            dataSetTicket.Tables["Билеты"].Rows[rowIndex].Delete(); // удаление из самой базы данных
 
-                            sqlDataAdapter.Update(dataSet, "Билеты"); // обновление базы данных 
+                            sqlDataAdapterTicket.Update(dataSetTicket, "Билеты"); // обновление базы данных 
                         }
                     }
 
@@ -167,7 +173,7 @@ namespace Theater
                     {
                         int rowIndex = dataGridViewTickets.Rows.Count - 2;
 
-                        DataRow row = dataSet.Tables["Билеты"].NewRow();
+                        DataRow row = dataSetTicket.Tables["Билеты"].NewRow();
 
                         row["Код билета"] = dataGridViewTickets.Rows[rowIndex].Cells["Код билета"].Value;
                         row["Дата покупки"] = dataGridViewTickets.Rows[rowIndex].Cells["Дата покупки"].Value;
@@ -177,15 +183,15 @@ namespace Theater
                         row["Код сотрудника"] = dataGridViewTickets.Rows[rowIndex].Cells["Код сотрудника"].Value;
                         row["Код мероприятия"] = dataGridViewTickets.Rows[rowIndex].Cells["Код мероприятия"].Value;
 
-                        dataSet.Tables["Билеты"].Rows.Add(row);
+                        dataSetTicket.Tables["Билеты"].Rows.Add(row);
 
-                        dataSet.Tables["Билеты"].Rows.RemoveAt(dataSet.Tables["Билеты"].Rows.Count - 2);
+                        dataSetTicket.Tables["Билеты"].Rows.RemoveAt(dataSetTicket.Tables["Билеты"].Rows.Count - 2);
 
                         dataGridViewTickets.Rows.RemoveAt(dataGridViewTickets.Rows.Count - 2);
 
                         dataGridViewTickets.Rows[e.RowIndex].Cells[7].Value = "Delete";
 
-                        sqlDataAdapter.Update(dataSet, "Билеты");
+                        sqlDataAdapterTicket.Update(dataSetTicket, "Билеты");
 
                         newRowAdding = false;
                     }
@@ -194,15 +200,15 @@ namespace Theater
                     {
                         int r = e.RowIndex; // получаем индекс выделенной строки
 
-                        dataSet.Tables["Билеты"].Rows[r]["Код билета"] = dataGridViewTickets.Rows[r].Cells["Код билета"].Value;
-                        dataSet.Tables["Билеты"].Rows[r]["Дата покупки"] = dataGridViewTickets.Rows[r].Cells["Дата покупки"].Value; // ячейкам из базы данных под нужным индексом r присваиваем значения из dataGrid по этому же индексу r
-                        dataSet.Tables["Билеты"].Rows[r]["Код зала"] = dataGridViewTickets.Rows[r].Cells["Код зала"].Value;
-                        dataSet.Tables["Билеты"].Rows[r]["Ряд"] = dataGridViewTickets.Rows[r].Cells["Ряд"].Value;
-                        dataSet.Tables["Билеты"].Rows[r]["Место"] = dataGridViewTickets.Rows[r].Cells["Место"].Value;
-                        dataSet.Tables["Билеты"].Rows[r]["Код сотрудника"] = dataGridViewTickets.Rows[r].Cells["Код сотрудника"].Value;
-                        dataSet.Tables["Билеты"].Rows[r]["Код мероприятия"] = dataGridViewTickets.Rows[r].Cells["Код мероприятия"].Value;
+                        dataSetTicket.Tables["Билеты"].Rows[r]["Код билета"] = dataGridViewTickets.Rows[r].Cells["Код билета"].Value;
+                        dataSetTicket.Tables["Билеты"].Rows[r]["Дата покупки"] = dataGridViewTickets.Rows[r].Cells["Дата покупки"].Value; // ячейкам из базы данных под нужным индексом r присваиваем значения из dataGrid по этому же индексу r
+                        dataSetTicket.Tables["Билеты"].Rows[r]["Код зала"] = dataGridViewTickets.Rows[r].Cells["Код зала"].Value;
+                        dataSetTicket.Tables["Билеты"].Rows[r]["Ряд"] = dataGridViewTickets.Rows[r].Cells["Ряд"].Value;
+                        dataSetTicket.Tables["Билеты"].Rows[r]["Место"] = dataGridViewTickets.Rows[r].Cells["Место"].Value;
+                        dataSetTicket.Tables["Билеты"].Rows[r]["Код сотрудника"] = dataGridViewTickets.Rows[r].Cells["Код сотрудника"].Value;
+                        dataSetTicket.Tables["Билеты"].Rows[r]["Код мероприятия"] = dataGridViewTickets.Rows[r].Cells["Код мероприятия"].Value;
 
-                        sqlDataAdapter.Update(dataSet, "Билеты");
+                        sqlDataAdapterTicket.Update(dataSetTicket, "Билеты");
 
 
                         dataGridViewTickets.Rows[r].Cells[7].Value = "Delete";
@@ -224,10 +230,10 @@ namespace Theater
         {
             try
             {
-                dataSet.Tables["Билеты"].Clear();
-                sqlDataAdapter.Fill(dataSet, "Билеты");
+                dataSetTicket.Tables["Билеты"].Clear();
+                sqlDataAdapterTicket.Fill(dataSetTicket, "Билеты");
 
-                dataGridViewTickets.DataSource = dataSet.Tables["Билеты"];
+                dataGridViewTickets.DataSource = dataSetTicket.Tables["Билеты"];
 
                 for (int i = 0; i < dataGridViewTickets.Rows.Count; i++)
                 {
@@ -375,9 +381,9 @@ namespace Theater
 
                             dgvEvents.Rows.RemoveAt(rowIndex); // удаление только из приложения
 
-                            dataSet.Tables["Мероприятия"].Rows[rowIndex].Delete(); // удаление из самой базы данных
+                            dataSetEvent.Tables["Мероприятия"].Rows[rowIndex].Delete(); // удаление из самой базы данных
 
-                            sqlDataAdapter.Update(dataSet, "Мероприятия"); // обновление базы данных 
+                            sqlDataAdapterEvent.Update(dataSetEvent, "Мероприятия"); // обновление базы данных 
                         }
                     }
 
@@ -385,7 +391,7 @@ namespace Theater
                     {
                         int rowIndex = dgvEvents.Rows.Count - 2;
 
-                        DataRow row = dataSet.Tables["Мероприятия"].NewRow();
+                        DataRow row = dataSetEvent.Tables["Мероприятия"].NewRow();
 
                         row["Код мероприятия"] = dgvEvents.Rows[rowIndex].Cells["Код мероприятия"].Value;
                         row["Наименование"] = dgvEvents.Rows[rowIndex].Cells["Наименование"].Value;
@@ -396,15 +402,15 @@ namespace Theater
                         row["Длительность"] = dgvEvents.Rows[rowIndex].Cells["Длительность"].Value;
                         row["Стоимость"] = dgvEvents.Rows[rowIndex].Cells["Стоимость"].Value;
 
-                        dataSet.Tables["Мероприятия"].Rows.Add(row);
+                        dataSetEvent.Tables["Мероприятия"].Rows.Add(row);
 
-                        dataSet.Tables["Мероприятия"].Rows.RemoveAt(dataSet.Tables["Мероприятия"].Rows.Count - 2);
+                        dataSetEvent.Tables["Мероприятия"].Rows.RemoveAt(dataSetEvent.Tables["Мероприятия"].Rows.Count - 2);
 
                         dgvEvents.Rows.RemoveAt(dgvEvents.Rows.Count - 2);
 
                         dgvEvents.Rows[e.RowIndex].Cells[8].Value = "Delete";
 
-                        sqlDataAdapter.Update(dataSet, "Мероприятия");
+                        sqlDataAdapterEvent.Update(dataSetEvent, "Мероприятия");
 
                         newRowAdding = false;
                     }
@@ -413,16 +419,16 @@ namespace Theater
                     {
                         int r = e.RowIndex; // получаем индекс выделенной строки
 
-                        dataSet.Tables["Мероприятия"].Rows[r]["Код мероприятия"] = dgvEvents.Rows[r].Cells["Код мероприятия"].Value;
-                        dataSet.Tables["Мероприятия"].Rows[r]["Наименование"] = dgvEvents.Rows[r].Cells["Наименование"].Value; // ячейкам из базы данных под нужным индексом r присваиваем значения из dataGrid по этому же индексу r
-                        dataSet.Tables["Мероприятия"].Rows[r]["Описание"] = dgvEvents.Rows[r].Cells["Описание"].Value;
-                        dataSet.Tables["Мероприятия"].Rows[r]["Код вида"] = dgvEvents.Rows[r].Cells["Код вида"].Value;
-                        dataSet.Tables["Мероприятия"].Rows[r]["Дата"] = dgvEvents.Rows[r].Cells["Дата"].Value;
-                        dataSet.Tables["Мероприятия"].Rows[r]["Время начала"] = dgvEvents.Rows[r].Cells["Время начала"].Value;
-                        dataSet.Tables["Мероприятия"].Rows[r]["Длительность"] = dgvEvents.Rows[r].Cells["Длительность"].Value;
-                        dataSet.Tables["Мероприятия"].Rows[r]["Стоимость"] = dgvEvents.Rows[r].Cells["Стоимость"].Value;
+                        dataSetEvent.Tables["Мероприятия"].Rows[r]["Код мероприятия"] = dgvEvents.Rows[r].Cells["Код мероприятия"].Value;
+                        dataSetEvent.Tables["Мероприятия"].Rows[r]["Наименование"] = dgvEvents.Rows[r].Cells["Наименование"].Value; // ячейкам из базы данных под нужным индексом r присваиваем значения из dataGrid по этому же индексу r
+                        dataSetEvent.Tables["Мероприятия"].Rows[r]["Описание"] = dgvEvents.Rows[r].Cells["Описание"].Value;
+                        dataSetEvent.Tables["Мероприятия"].Rows[r]["Код вида"] = dgvEvents.Rows[r].Cells["Код вида"].Value;
+                        dataSetEvent.Tables["Мероприятия"].Rows[r]["Дата"] = dgvEvents.Rows[r].Cells["Дата"].Value;
+                        dataSetEvent.Tables["Мероприятия"].Rows[r]["Время начала"] = dgvEvents.Rows[r].Cells["Время начала"].Value;
+                        dataSetEvent.Tables["Мероприятия"].Rows[r]["Длительность"] = dgvEvents.Rows[r].Cells["Длительность"].Value;
+                        dataSetEvent.Tables["Мероприятия"].Rows[r]["Стоимость"] = dgvEvents.Rows[r].Cells["Стоимость"].Value;
 
-                        sqlDataAdapter.Update(dataSet, "Мероприятия");
+                        sqlDataAdapterEvent.Update(dataSetEvent, "Мероприятия");
 
 
                         dgvEvents.Rows[r].Cells[8].Value = "Delete";
@@ -445,19 +451,19 @@ namespace Theater
             try
             {
                 dataBase.openConnection();
-                sqlDataAdapter = new SqlDataAdapter("SELECT *, 'Delete' AS [Command] FROM [Мероприятия]", dataBase.GetConnection());
+                sqlDataAdapterEvent = new SqlDataAdapter("SELECT *, 'Delete' AS [Command] FROM [Мероприятия]", dataBase.GetConnection());
 
-                sqlBuilder = new SqlCommandBuilder(sqlDataAdapter);
+                sqlBuilderEvent = new SqlCommandBuilder(sqlDataAdapterEvent);
 
-                sqlBuilder.GetInsertCommand();
-                sqlBuilder.GetUpdateCommand();
-                sqlBuilder.GetDeleteCommand();
+                sqlBuilderEvent.GetInsertCommand();
+                sqlBuilderEvent.GetUpdateCommand();
+                sqlBuilderEvent.GetDeleteCommand();
 
-                dataSet = new DataSet();
+                dataSetEvent = new DataSet();
 
-                sqlDataAdapter.Fill(dataSet, "Мероприятия");
+                sqlDataAdapterEvent.Fill(dataSetEvent, "Мероприятия");
 
-                dgvEvents.DataSource = dataSet.Tables["Мероприятия"];
+                dgvEvents.DataSource = dataSetEvent.Tables["Мероприятия"];
 
                 for (int i = 0; i < dgvEvents.Rows.Count; i++)
                 {
@@ -478,10 +484,10 @@ namespace Theater
         {
             try
             {
-                dataSet.Tables["Мероприятия"].Clear();
-                sqlDataAdapter.Fill(dataSet, "Мероприятия");
+                dataSetEvent.Tables["Мероприятия"].Clear();
+                sqlDataAdapterEvent.Fill(dataSetEvent, "Мероприятия");
 
-                dgvEvents.DataSource = dataSet.Tables["Мероприятия"];
+                dgvEvents.DataSource = dataSetEvent.Tables["Мероприятия"];
 
                 for (int i = 0; i < dgvEvents.Rows.Count; i++)
                 {
@@ -541,19 +547,19 @@ namespace Theater
             try
             {
                 dataBase.openConnection();
-                sqlDataAdapter = new SqlDataAdapter("SELECT *, 'Delete' AS [Command] FROM [Сотрудники]", dataBase.GetConnection());
+                sqlDataAdapterEmployer = new SqlDataAdapter("SELECT *, 'Delete' AS [Command] FROM [Сотрудники]", dataBase.GetConnection());
 
-                sqlBuilder = new SqlCommandBuilder(sqlDataAdapter);
+                sqlBuilderEmployer = new SqlCommandBuilder(sqlDataAdapterEmployer);
 
-                sqlBuilder.GetInsertCommand();
-                sqlBuilder.GetUpdateCommand();
-                sqlBuilder.GetDeleteCommand();
+                sqlBuilderEmployer.GetInsertCommand();
+                sqlBuilderEmployer.GetUpdateCommand();
+                sqlBuilderEmployer.GetDeleteCommand();
 
-                dataSet = new DataSet();
+                dataSetEmployers = new DataSet();
 
-                sqlDataAdapter.Fill(dataSet, "Сотрудники");
+                sqlDataAdapterEmployer.Fill(dataSetEmployers, "Сотрудники");
 
-                dgvEmployers.DataSource = dataSet.Tables["Сотрудники"];
+                dgvEmployers.DataSource = dataSetEmployers.Tables["Сотрудники"];
 
                 for (int i = 0; i < dgvEmployers.Rows.Count; i++)
                 {
@@ -635,9 +641,9 @@ namespace Theater
 
                             dgvEmployers.Rows.RemoveAt(rowIndex); // удаление только из приложения
 
-                            dataSet.Tables["Сотрудники"].Rows[rowIndex].Delete(); // удаление из самой базы данных
+                            dataSetEmployers.Tables["Сотрудники"].Rows[rowIndex].Delete(); // удаление из самой базы данных
 
-                            sqlDataAdapter.Update(dataSet, "Сотрудники"); // обновление базы данных 
+                            sqlDataAdapterEmployer.Update(dataSetEmployers, "Сотрудники"); // обновление базы данных 
                         }
                     }
 
@@ -645,7 +651,7 @@ namespace Theater
                     {
                         int rowIndex = dgvEmployers.Rows.Count - 2;
 
-                        DataRow row = dataSet.Tables["Сотрудники"].NewRow();
+                        DataRow row = dataSetEmployers.Tables["Сотрудники"].NewRow();
 
                         row["Код сотрудника"] = dgvEmployers.Rows[rowIndex].Cells["Код сотрудника"].Value;
                         row["Фамилия"] = dgvEmployers.Rows[rowIndex].Cells["Фамилия"].Value;
@@ -657,15 +663,15 @@ namespace Theater
                         row["Логин"] = dgvEmployers.Rows[rowIndex].Cells["Логин"].Value;
                         row["Пароль"] = dgvEmployers.Rows[rowIndex].Cells["Пароль"].Value;
 
-                        dataSet.Tables["Сотрудники"].Rows.Add(row);
+                        dataSetEmployers.Tables["Сотрудники"].Rows.Add(row);
 
-                        dataSet.Tables["Сотрудники"].Rows.RemoveAt(dataSet.Tables["Сотрудники"].Rows.Count - 2);
+                        dataSetEmployers.Tables["Сотрудники"].Rows.RemoveAt(dataSetEmployers.Tables["Сотрудники"].Rows.Count - 2);
 
                         dgvEmployers.Rows.RemoveAt(dgvEmployers.Rows.Count - 2);
 
                         dgvEmployers.Rows[e.RowIndex].Cells[9].Value = "Delete";
 
-                        sqlDataAdapter.Update(dataSet, "Сотрудники");
+                        sqlDataAdapterEmployer.Update(dataSetEmployers, "Сотрудники");
 
                         newRowAdding = false;
                     }
@@ -674,17 +680,17 @@ namespace Theater
                     {
                         int r = e.RowIndex; // получаем индекс выделенной строки
 
-                        dataSet.Tables["Сотрудники"].Rows[r]["Код сотрудника"] = dgvEmployers.Rows[r].Cells["Код сотрудника"].Value;
-                        dataSet.Tables["Сотрудники"].Rows[r]["Фамилия"] = dgvEmployers.Rows[r].Cells["Фамилия"].Value; // ячейкам из базы данных под нужным индексом r присваиваем значения из dataGrid по этому же индексу r
-                        dataSet.Tables["Сотрудники"].Rows[r]["Имя"] = dgvEmployers.Rows[r].Cells["Имя"].Value;
-                        dataSet.Tables["Сотрудники"].Rows[r]["Отчество"] = dgvEmployers.Rows[r].Cells["Отчество"].Value;
-                        dataSet.Tables["Сотрудники"].Rows[r]["Адрес"] = dgvEmployers.Rows[r].Cells["Адрес"].Value;
-                        dataSet.Tables["Сотрудники"].Rows[r]["Телефон"] = dgvEmployers.Rows[r].Cells["Телефон"].Value;
-                        dataSet.Tables["Сотрудники"].Rows[r]["Код должности"] = dgvEmployers.Rows[r].Cells["Код должности"].Value;
-                        dataSet.Tables["Сотрудники"].Rows[r]["Логин"] = dgvEmployers.Rows[r].Cells["Логин"].Value;
-                        dataSet.Tables["Сотрудники"].Rows[r]["Пароль"] = dgvEmployers.Rows[r].Cells["Пароль"].Value;
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Код сотрудника"] = dgvEmployers.Rows[r].Cells["Код сотрудника"].Value;
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Фамилия"] = dgvEmployers.Rows[r].Cells["Фамилия"].Value; // ячейкам из базы данных под нужным индексом r присваиваем значения из dataGrid по этому же индексу r
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Имя"] = dgvEmployers.Rows[r].Cells["Имя"].Value;
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Отчество"] = dgvEmployers.Rows[r].Cells["Отчество"].Value;
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Адрес"] = dgvEmployers.Rows[r].Cells["Адрес"].Value;
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Телефон"] = dgvEmployers.Rows[r].Cells["Телефон"].Value;
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Код должности"] = dgvEmployers.Rows[r].Cells["Код должности"].Value;
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Логин"] = dgvEmployers.Rows[r].Cells["Логин"].Value;
+                        dataSetEmployers.Tables["Сотрудники"].Rows[r]["Пароль"] = dgvEmployers.Rows[r].Cells["Пароль"].Value;
 
-                        sqlDataAdapter.Update(dataSet, "Сотрудники");
+                        sqlDataAdapterEmployer.Update(dataSetEmployers, "Сотрудники");
 
 
                         dgvEmployers.Rows[r].Cells[9].Value = "Delete";
@@ -706,10 +712,10 @@ namespace Theater
         {
             try
             {
-                dataSet.Tables["Сотрудники"].Clear();
-                sqlDataAdapter.Fill(dataSet, "Сотрудники");
+                dataSetEmployers.Tables["Сотрудники"].Clear();
+                sqlDataAdapterEmployer.Fill(dataSetEmployers, "Сотрудники");
 
-                dgvEmployers.DataSource = dataSet.Tables["Сотрудники"];
+                dgvEmployers.DataSource = dataSetEmployers.Tables["Сотрудники"];
 
                 for (int i = 0; i < dgvEmployers.Rows.Count; i++)
                 {
@@ -749,6 +755,12 @@ namespace Theater
             this.Hide();
             Login login = new Login();
             login.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HallPlaces hallPlaces = new HallPlaces();
+            hallPlaces.Show();
         }
     }
 }

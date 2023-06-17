@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Excel;
+using Microsoft.Vbe.Interop;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Theater
     public partial class Booker : Form
     {
         DataBase dataBase = new DataBase();
+        string eventID;
 
         public UserData userData;
 
@@ -408,51 +410,163 @@ namespace Theater
             dataGridViewEmployers.Rows.Clear();
 
             string name = txtEmpSearch.Text;
-            try
+            string lName = txtLastName.Text;
+
+            if (txtEmpSearch.Text != "" && txtLastName.Text != "")
             {
-                dataBase.openConnection();
 
-                string query = $"SELECT * FROM Сотрудники where Имя = '{name}'";
 
-                SqlCommand command = new SqlCommand(query, dataBase.GetConnection());
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                List<string[]> data = new List<string[]>();
-
-                if (reader.HasRows)
+                try
                 {
-                    while (reader.Read())
+                    dataBase.openConnection();
+
+                    string query = $"SELECT * FROM Сотрудники where Имя = '{name}' and Фамилия = '{lName}'";
+
+                    SqlCommand command = new SqlCommand(query, dataBase.GetConnection());
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    List<string[]> data = new List<string[]>();
+
+                    if (reader.HasRows)
                     {
-                        data.Add(new string[7]);
+                        while (reader.Read())
+                        {
+                            data.Add(new string[7]);
 
-                        data[data.Count - 1][0] = reader[0].ToString();
-                        data[data.Count - 1][1] = reader[1].ToString();
-                        data[data.Count - 1][2] = reader[2].ToString();
-                        data[data.Count - 1][3] = reader[3].ToString();
-                        data[data.Count - 1][4] = reader[4].ToString();
-                        data[data.Count - 1][5] = reader[5].ToString();
-                        data[data.Count - 1][6] = reader[6].ToString();
+                            data[data.Count - 1][0] = reader[0].ToString();
+                            data[data.Count - 1][1] = reader[1].ToString();
+                            data[data.Count - 1][2] = reader[2].ToString();
+                            data[data.Count - 1][3] = reader[3].ToString();
+                            data[data.Count - 1][4] = reader[4].ToString();
+                            data[data.Count - 1][5] = reader[5].ToString();
+                            data[data.Count - 1][6] = reader[6].ToString();
 
-                        foreach (string[] s in data)
-                            dataGridViewEmployers.Rows.Add(s);
+                            foreach (string[] s in data)
+                                dataGridViewEmployers.Rows.Add(s);
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Сотрудников по данному имени не найдено.");
+                    }
+
+                    reader.Close();
+
+                    dataBase.closeConnection();
                 }
-                else
+
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Сотрудников по данному имени не найдено.");
+                    dataBase.closeConnection();
+                    MessageBox.Show("Похоже вы ввели что-то не то. Пожалуйста, введите имя сотрудника.");
                 }
-
-                reader.Close();
-
-                dataBase.closeConnection();
             }
-
-            catch (Exception ex)
+            else
             {
-                dataBase.closeConnection();
-                MessageBox.Show("Похоже вы ввели что-то не то. Пожалуйста, введите имя сотрудника.");
+                MessageBox.Show("Пожалуйста, заполните оба поля");
             }
+        }
+
+        private void btnFilter1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnF2_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnFilter3_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnFilter1_Click_1(object sender, EventArgs e)
+        {
+            dataBase.openConnection();
+
+            string sql = $"select count([Код билета]), sum(Стоимость) from Билеты inner join Мероприятия on Билеты.[Код мероприятия] = Мероприятия.[Код мероприятия] where Мероприятия.Наименование = @nameSelectedEvent and Билеты.[Дата покупки] = @date";
+
+            SqlCommand cmdGetSelectedEvent = new SqlCommand(sql, dataBase.GetConnection());
+            cmdGetSelectedEvent.Parameters.Add(new SqlParameter("@nameSelectedEvent", txtEventsFilter1.Text));
+            cmdGetSelectedEvent.Parameters.Add(new SqlParameter("@date", txtDateOrder.Text));
+
+            SqlDataReader reader = cmdGetSelectedEvent.ExecuteReader();
+
+            reader.Read();
+
+            if (reader.HasRows)
+            {
+                lblCount.Text = reader[0].ToString();
+                lblSum.Text = reader[1].ToString();
+
+                if (lblCount.Text == "0")
+                {
+                    MessageBox.Show("Данных по такому запросу нет");
+                }
+            }
+
+
+            reader.Close();
+        }
+
+        private void btnF2_Click_1(object sender, EventArgs e)
+        {
+            dataBase.openConnection();
+
+            string sql = $"select count([Код билета]), sum(Стоимость) from Билеты inner join Мероприятия on Билеты.[Код мероприятия] = Мероприятия.[Код мероприятия] where Мероприятия.Наименование = @nameSelectedEvent and month(Билеты.[Дата покупки]) = @month";
+
+            SqlCommand cmdGetSelectedEvent = new SqlCommand(sql, dataBase.GetConnection());
+            cmdGetSelectedEvent.Parameters.Add(new SqlParameter("@nameSelectedEvent", txtEventF2.Text));
+            cmdGetSelectedEvent.Parameters.Add(new SqlParameter("@month", txtMonth.Text));
+
+            SqlDataReader reader = cmdGetSelectedEvent.ExecuteReader();
+
+            reader.Read();
+
+            if (reader.HasRows)
+            {
+                lblCountF2.Text = reader[0].ToString();
+                lblSumF2.Text = reader[1].ToString();
+
+                if (lblCountF2.Text == "0")
+                {
+                    MessageBox.Show("Данных по такому запросу нет");
+                }
+            }
+
+
+            reader.Close();
+        }
+
+        private void btnFilter3_Click_1(object sender, EventArgs e)
+        {
+            dataBase.openConnection();
+
+            string sql = $"select count([Код билета]), sum(Стоимость) from Билеты inner join Мероприятия on Билеты.[Код мероприятия] = Мероприятия.[Код мероприятия] where Мероприятия.Наименование = @nameSelectedEvent and year(Билеты.[Дата покупки]) = @year";
+
+            SqlCommand cmdGetSelectedEvent = new SqlCommand(sql, dataBase.GetConnection());
+            cmdGetSelectedEvent.Parameters.Add(new SqlParameter("@nameSelectedEvent", txtEvF3.Text));
+            cmdGetSelectedEvent.Parameters.Add(new SqlParameter("@year", txtYear.Text));
+
+            SqlDataReader reader = cmdGetSelectedEvent.ExecuteReader();
+
+            reader.Read();
+
+            if (reader.HasRows)
+            {
+                lblCountF3.Text = reader[0].ToString();
+                lblSumF3.Text = reader[1].ToString();
+
+                if (lblCountF3.Text == "0")
+                {
+                    MessageBox.Show("Данных по такому запросу нет");
+                }
+            }
+
+            reader.Close();
         }
     }
 }

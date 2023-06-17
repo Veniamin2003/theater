@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Theater
 {
     public partial class Cashier : Form
@@ -18,10 +20,13 @@ namespace Theater
         public UserData userData;
         SqlDataAdapter adapter = new SqlDataAdapter();
 
-        DataTable tableEvents = new DataTable();
-        DataTable tableHalls = new DataTable();
-        DataTable tableEventTypes = new DataTable();
-        DataTable tableSelectedEventTypes = new DataTable();
+        System.Data.DataTable tableEvents = new System.Data.DataTable();
+
+        System.Data.DataTable tableHalls = new System.Data.DataTable();
+
+        System.Data.DataTable tableEventTypes = new System.Data.DataTable();
+       
+        System.Data.DataTable tableSelectedEventTypes = new System.Data.DataTable();
 
         string eventID;
         string hallID;
@@ -42,7 +47,7 @@ namespace Theater
             ShowUserData();
             getEventOrder();
             getHalls();
-            getEventTypes();
+            /*getEventTypes();*/
         }
 
         private void ShowUserData() // метод отвечает за вывод данных пользователя в левом верхнем углу.
@@ -161,7 +166,7 @@ namespace Theater
             reader.Close();
         }
 
-        private void getEventTypes() // вывод !видов! мероприятий в comboBox
+        /*private void getEventTypes() // вывод !видов! мероприятий в comboBox
         {
             database.openConnection();
 
@@ -184,9 +189,9 @@ namespace Theater
             cmbEventTypes.DataSource = tableEventTypes;
             cmbEventTypes.DisplayMember = "Наименование";
             cmbEventTypes.ValueMember = "Код вида";
-        }
+        }*/
 
-        private void getSelectedEventType() // вывод !видов! мероприятий в comboBox
+        /*private void getSelectedEventType() // вывод !видов! мероприятий в comboBox
         {
             database.openConnection();
 
@@ -205,48 +210,55 @@ namespace Theater
             }
 
             reader.Close();
-        }
+        }*/
 
         private void addTicket() //добавление записи в бд Билеты
         {
             if(comboBoxEvents.Text != "" && comboBoxHalls.Text != "" && txtRowNumber.Text != "" && txtPlaceNumber.Text != "")
             {
-                getSelectedEvent();//получение id выбранного мероприятия
-                getSelectedHalls();// залы получение
-                checkTicket();
-
-                if (isEdentifyTicket)
+                if (Convert.ToInt32(txtRowNumber.Text) < 5 || Convert.ToInt32(txtPlaceNumber.Text) < 10)
                 {
-                    try
+                    getSelectedEvent();//получение id выбранного мероприятия
+                    getSelectedHalls();// залы получение
+                    checkTicket();
+
+                    if (isEdentifyTicket)
                     {
-                        string sql = $"INSERT INTO Билеты([Дата покупки], [Код зала], Ряд, Место, [Код сотрудника], [Код мероприятия])VALUES" +
-                            "('" + dateNow + "', '" + hallID + "', '" + txtRowNumber.Text + "', '" + txtPlaceNumber.Text + "', '" + userData.UserID + "', '" + eventID + "' )";
+                        try
+                        {
+                            string sql = $"INSERT INTO Билеты([Дата покупки], [Код зала], Ряд, Место, [Код сотрудника], [Код мероприятия])VALUES" +
+                                "('" + dateNow + "', '" + hallID + "', '" + txtRowNumber.Text + "', '" + txtPlaceNumber.Text + "', '" + userData.UserID + "', '" + eventID + "' )";
 
-                        database.openConnection();
-
-                        if (database.GetConnection().State != ConnectionState.Open)
                             database.openConnection();
 
-                        SqlCommand command = new SqlCommand(sql, database.GetConnection());
-                        int x = command.ExecuteNonQuery();
+                            if (database.GetConnection().State != ConnectionState.Open)
+                                database.openConnection();
 
-                        database.closeConnection();
+                            SqlCommand command = new SqlCommand(sql, database.GetConnection());
+                            int x = command.ExecuteNonQuery();
 
-                        txtRowNumber.Text = "";
-                        txtPlaceNumber.Text = "";
+                            database.closeConnection();
 
-                        MessageBox.Show(x.ToString() + " запись добавлена.");
-                        database.closeConnection();
+                            txtRowNumber.Text = "";
+                            txtPlaceNumber.Text = "";
+
+                            MessageBox.Show(x.ToString() + " запись добавлена.");
+                            database.closeConnection();
+                        }
+                        catch (Exception ex)
+                        {
+                            database.closeConnection();
+                            MessageBox.Show(ex.Message);
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        database.closeConnection();
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show("Такой билет уже существует");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Такой билет уже существует");
+                    MessageBox.Show("Вы ввели несуществующий ряд или место");
                 }
 
             }
@@ -286,7 +298,7 @@ namespace Theater
             reader.Close();
         }
 
-        private void addEvent()// добавление записи в бд Мероприятия
+       /* private void addEvent()// добавление записи в бд Мероприятия
         {
             if (txtEventName.Text != "" && cmbEventTypes.Text != ""
                 && txtEventDesc.Text != "" && txtEventDate.Text != ""
@@ -338,7 +350,7 @@ namespace Theater
             {
                 MessageBox.Show("Заполните все поля!");
             }
-        }
+        }*/
 
         private void btnAddTicket_Click(object sender, EventArgs e)
         {
@@ -347,7 +359,7 @@ namespace Theater
 
         private void btnEventAdd_Click(object sender, EventArgs e)
         {
-            addEvent();
+          /*  addEvent();*/
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -423,6 +435,62 @@ namespace Theater
             else 
             {
                 MessageBox.Show("Не все поля заполнены");
+            }
+        }
+
+        private void bntShowPlaces_Click(object sender, EventArgs e)
+        {
+            HallPlaces hallPlaces = new HallPlaces();
+            hallPlaces.Show();
+        }
+
+        private void btnShowEvents_Click(object sender, EventArgs e)
+        {
+            dataGridViewEvent.Rows.Clear();
+            LoadDataEvents();
+        }
+
+        private void LoadDataEvents() // загрузка данных из мероприятия
+        {
+            try
+            {
+                database.GetConnection();
+                database.openConnection();
+
+                string query = "SELECT [Код мероприятия], Мероприятия.Наименование, Описание, Вид.Наименование, Дата, [Время начала], Длительность, Стоимость FROM " +
+                    "Мероприятия inner join Вид on Мероприятия.[Код вида] = Вид.[Код вида]";
+
+                SqlCommand command = new SqlCommand(query, database.GetConnection());
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                List<string[]> data = new List<string[]>();
+
+                while (reader.Read())
+                {
+                    data.Add(new string[8]);
+
+                    data[data.Count - 1][0] = reader[0].ToString();
+                    data[data.Count - 1][1] = reader[1].ToString();
+                    data[data.Count - 1][2] = reader[2].ToString();
+                    data[data.Count - 1][3] = reader[3].ToString();
+                    data[data.Count - 1][4] = reader[4].ToString();
+                    data[data.Count - 1][5] = reader[5].ToString();
+                    data[data.Count - 1][6] = reader[6].ToString();
+                    data[data.Count - 1][7] = reader[7].ToString();
+                }
+                reader.Close();
+
+                database.closeConnection();
+
+                foreach (string[] s in data)
+                    dataGridViewEvent.Rows.Add(s);
+            }
+
+            catch (Exception ex)
+            {
+                database.closeConnection();
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -55,6 +55,7 @@
             this.labelFName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTickets)).BeginInit();
             this.tPageEvents.SuspendLayout();
             this.tPageTickets.SuspendLayout();
@@ -364,6 +365,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(246)))), ((int)(((byte)(240)))));
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.btnBack);
             this.panel1.Controls.Add(this.pictureBox4);
@@ -384,6 +386,18 @@
             this.pictureBox5.Size = new System.Drawing.Size(129, 93);
             this.pictureBox5.TabIndex = 28;
             this.pictureBox5.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(203)))), ((int)(((byte)(233)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(696, 49);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(183, 33);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Посмотреть рассадку зала";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Admin
             // 
@@ -445,5 +459,6 @@
         private System.Windows.Forms.Label labelFName;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Button button1;
     }
 }

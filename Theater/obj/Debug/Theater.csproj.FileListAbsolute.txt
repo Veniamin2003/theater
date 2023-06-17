@@ -17,3 +17,5 @@ C:\Study\C#\theater\Theater\bin\Debug\Theater.exe.manifest
 C:\Study\C#\theater\Theater\bin\Debug\Theater.application
 C:\Study\C#\theater\Theater\obj\Debug\Theater.exe.manifest
 C:\Study\C#\theater\Theater\obj\Debug\Theater.application
+C:\Study\C#\theater\Theater\obj\Debug\Theater.HallPlaces.resources
+C:\Study\C#\theater\Theater\obj\Debug\Theater.Test.resources

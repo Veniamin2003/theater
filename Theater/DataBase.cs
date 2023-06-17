@@ -9,7 +9,7 @@ namespace Theater
 {
     internal class DataBase
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=HOME-PC\SQLEXPRESS;Initial Catalog=Theater;Integrated Security=True");
+        SqlConnection connection = new SqlConnection(@"Data Source=HOME-PC\SQLEXPRESS;Initial Catalog=Theater;Integrated Security=True;MultipleActiveResultSets=true");
 
         public void openConnection()
         {
